@@ -1,0 +1,2083 @@
+best_trader_aluminium_scorer = {
+	targets = {
+		# describe the target to consider
+		targets_dynamic = no
+		target_non_existing = no
+		#target_array = global.majors
+		target_array = global.countries
+		# MTTH like score description
+		# THIS is a target
+		# FROM is the initiator
+    	score = {
+			base = 0
+			modifier = {
+				add = resource_exported@aluminium
+			}
+			modifier = {
+				check_variable = {resource_exported@aluminium < 100}
+				factor = 0.001
+			}
+			modifier = {
+				has_opinion = {
+                    target = FROM
+                    value < 0
+                }
+				factor = 0.4
+			}
+            modifier = {
+				has_opinion = {
+                    target = FROM
+                    value > 50
+                }
+				factor = 1.25
+			}
+        	modifier = {
+				is_subject_of = FROM
+				factor = 80
+			}
+            modifier = {
+				is_puppet_of = FROM
+				factor = 100
+			}
+			modifier = {
+				check_variable = {FROM = THIS}
+				factor = 0
+			}
+			modifier = {
+				has_war_with = FROM
+				factor = 0
+			}
+			modifier = {
+				is_ally_with = FROM
+				factor = 10
+			}
+			modifier = {
+				has_non_aggression_pact_with = FROM
+				factor = 1.5
+			}
+			modifier = {
+				is_neighbor_of = FROM
+				factor = 4
+			}
+			# AXIS with AXIS trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = SPR}
+						check_variable = {temp = BUL}
+						# Add other tags as needed
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = SPR}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = BUL}
+						# Add other tags as needed
+					}
+				}
+				factor = 20
+            }
+			# AXIS with NEUTRAL trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = DEN}
+						check_variable = {temp = NOR}
+						check_variable = {temp = SWE}
+						check_variable = {temp = FIN}
+						check_variable = {temp = TUR}
+						check_variable = {temp = GRE}
+						check_variable = {temp = POR}
+						check_variable = {temp = VEN}
+						check_variable = {temp = SWI}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = IRE}
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+						check_variable = {temp = SPR}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = BUL}
+					}
+				}
+				factor = 2.5
+            }
+			# AXIS to ALLIES trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = USA}
+						check_variable = {temp = SOV}
+						check_variable = {temp = FRA}
+						check_variable = {temp = ENG}
+						check_variable = {temp = CAN}
+						check_variable = {temp = MON}
+						check_variable = {temp = CHI}
+						check_variable = {temp = INS_HOL}
+						check_variable = {temp = HOL}
+						check_variable = {temp = AST}
+						check_variable = {temp = RAJ}
+						check_variable = {temp = SAF}
+						check_variable = {temp = MEX}
+						check_variable = {temp = NZL}
+						check_variable = {temp = IRE}
+						check_variable = {temp = BRA}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+						check_variable = {temp = SPR}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = BUL}
+					}
+				}
+				factor = 0.01
+            }
+			# AXIS to JAPAN trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = SPR}
+						check_variable = {temp = BUL}
+					}
+				}
+				factor = 5
+            }
+			# SOV to SOV trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = SOV}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = MON}
+					}
+				}
+				factor = 40
+            }
+			# SOV-ALLIES to ALLIES trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = USA}
+						check_variable = {temp = SOV}
+						check_variable = {temp = FRA}
+						check_variable = {temp = ENG}
+						check_variable = {temp = CAN}
+						check_variable = {temp = MON}
+						check_variable = {temp = CHI}
+						check_variable = {temp = INS_HOL}
+						check_variable = {temp = HOL}
+						check_variable = {temp = AST}
+						check_variable = {temp = RAJ}
+						check_variable = {temp = SAF}
+						check_variable = {temp = MEX}
+						check_variable = {temp = NZL}
+						check_variable = {temp = IRE}
+						check_variable = {temp = BRA}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = USA}
+						check_variable = {temp = SOV}
+						check_variable = {temp = FRA}
+						check_variable = {temp = ENG}
+						check_variable = {temp = CAN}
+						check_variable = {temp = MON}
+						check_variable = {temp = CHI}
+						check_variable = {temp = INS_HOL}
+						check_variable = {temp = HOL}
+						check_variable = {temp = AST}
+						check_variable = {temp = RAJ}
+						check_variable = {temp = SAF}
+						check_variable = {temp = MEX}
+						check_variable = {temp = NZL}
+						check_variable = {temp = IRE}
+						check_variable = {temp = BRA}
+					}
+				}
+				factor = 20
+            }
+			# JAPAN to JAPAN trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+					}
+				}
+				factor = 20
+            }
+			modifier = {
+                # 满足以下任一情况，则将评分设为零 (factor = 0)：
+                OR = {
+                    # =================================================================
+                    # 1. 发起国 (FROM) 是亚洲国家的情况
+                    # 惩罚条件：FROM在亚洲，THIS不在亚洲/中东/欧洲，且FROM没有控制沿海省份。
+                    # (即FROM在亚洲，想和美洲、非洲、大洋洲的目标国THIS打交道，但没有出海口)
+                    # =================================================================
+                    AND = {
+                        # 发起国 (FROM) 在亚洲
+                        FROM.capital_scope = { is_on_continent = asia }
+                        
+                        # 目标国 (THIS) 不在亚洲、不在中东、不在欧洲
+                        NOT = { 
+                            OR = {
+                                THIS.capital_scope = { is_on_continent = asia }
+                                THIS.capital_scope = { is_on_continent = middle_east }
+                                THIS.capital_scope = { is_on_continent = europe }
+                            }
+                        }
+                        
+                        # 且发起国没有控制任何沿海省份
+                        NOT = {
+                            any_state = {
+                                is_controlled_by = FROM
+                                is_coastal = yes
+                            }
+                        }
+                    }
+                    
+                    # =================================================================
+                    # 2. 发起国 (FROM) 是美洲国家 (北美或南美) 的情况
+                    # 惩罚条件：FROM在美洲，THIS不在美洲，且FROM没有控制沿海省份。
+                    # (即FROM在美洲，想和亚洲、欧洲、非洲、大洋洲的目标国THIS打交道，但没有出海口)
+                    # =================================================================
+                    AND = {
+                        # 发起国 (FROM) 在美洲 (北美或南美)
+                        OR = {
+                            FROM.capital_scope = { is_on_continent = north_america }
+                            FROM.capital_scope = { is_on_continent = south_america }
+                        }
+                        
+                        # 目标国 (THIS) 不在美洲 (北美或南美)
+                        NOT = { 
+                            OR = {
+                                THIS.capital_scope = { is_on_continent = north_america }
+                                THIS.capital_scope = { is_on_continent = south_america }
+                            }
+                        }
+                        
+                        # 且发起国没有控制任何沿海省份
+                        NOT = {
+                            any_state = {
+                                is_controlled_by = FROM
+                                is_coastal = yes
+                            }
+                        }
+                    }
+                    
+                    # =================================================================
+                    # 3. 发起国 (FROM) 是大洋洲国家 (澳大利亚) 的情况 (新增要求)
+                    # 惩罚条件：FROM在大洋洲，THIS不在大洋洲/亚洲/中东，且FROM没有控制沿海省份。
+                    # (即FROM在大洋洲，想和美洲、欧洲、非洲的目标国THIS打交道，但没有出海口)
+                    # =================================================================
+                    AND = {
+                        # 发起国 (FROM) 在大洋洲 (australia)
+                        FROM.capital_scope = { is_on_continent = australia }
+                        
+                        # 目标国 (THIS) 不在邻近的大洲 (大洋洲、亚洲、中东)
+                        NOT = { 
+                            OR = {
+                                THIS.capital_scope = { is_on_continent = australia }
+                                THIS.capital_scope = { is_on_continent = asia }
+                                THIS.capital_scope = { is_on_continent = middle_east }
+                            }
+                        }
+                        
+                        # 且发起国没有控制任何沿海省份
+                        NOT = {
+                            any_state = {
+                                is_controlled_by = FROM
+                                is_coastal = yes
+                            }
+                        }
+                    }
+                }
+                
+                # 满足上述任一跨洲/无沿海条件，评分设为零
+                factor = 0
+            }
+		}
+	}
+}
+best_trader_rubber_scorer = {
+	targets = {
+		# describe the target to consider
+		targets_dynamic = no
+		target_non_existing = no
+		#target_array = global.majors
+		target_array = global.countries
+		# MTTH like score description
+		# THIS is a target
+		# FROM is the initiator
+    	score = {
+			base = 0
+			modifier = {
+				add = resource_exported@rubber
+			}
+			modifier = {
+				check_variable = {resource_exported@rubber < 50}
+				factor = 0.1
+			}
+			modifier = {
+				has_opinion = {
+                    target = FROM
+                    value < 0
+                }
+				factor = 0.4
+			}
+            modifier = {
+				has_opinion = {
+                    target = FROM
+                    value > 50
+                }
+				factor = 1.25
+			}
+        	modifier = {
+				is_subject_of = FROM
+				factor = 80
+			}
+            modifier = {
+				is_puppet_of = FROM
+				factor = 100
+			}
+			modifier = {
+				check_variable = {FROM = THIS}
+				factor = 0
+			}
+			modifier = {
+				has_war_with = FROM
+				factor = 0
+			}
+			modifier = {
+				is_ally_with = FROM
+				factor = 10
+			}
+			modifier = {
+				has_non_aggression_pact_with = FROM
+				factor = 1.5
+			}
+			modifier = {
+				is_neighbor_of = FROM
+				factor = 4
+			}
+			# AXIS with AXIS trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = SPR}
+						check_variable = {temp = BUL}
+						# Add other tags as needed
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = SPR}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = BUL}
+						# Add other tags as needed
+					}
+				}
+				factor = 20
+            }
+			# AXIS with NEUTRAL trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = DEN}
+						check_variable = {temp = NOR}
+						check_variable = {temp = SWE}
+						check_variable = {temp = FIN}
+						check_variable = {temp = TUR}
+						check_variable = {temp = GRE}
+						check_variable = {temp = POR}
+						check_variable = {temp = VEN}
+						check_variable = {temp = SWI}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = IRE}
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+						check_variable = {temp = SPR}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = BUL}
+					}
+				}
+				factor = 2.5
+            }
+			# AXIS to ALLIES trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = USA}
+						check_variable = {temp = SOV}
+						check_variable = {temp = FRA}
+						check_variable = {temp = ENG}
+						check_variable = {temp = CAN}
+						check_variable = {temp = MON}
+						check_variable = {temp = CHI}
+						check_variable = {temp = INS}
+						check_variable = {temp = HOL}
+						check_variable = {temp = AST}
+						check_variable = {temp = RAJ}
+						check_variable = {temp = SAF}
+						check_variable = {temp = MEX}
+						check_variable = {temp = NZL}
+						check_variable = {temp = IRE}
+						check_variable = {temp = BRA}
+						check_variable = {temp = MAL}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+						check_variable = {temp = SPR}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = BUL}
+					}
+				}
+				factor = 0.001
+            }
+			# AXIS to JAPAN trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = SPR}
+						check_variable = {temp = BUL}
+					}
+				}
+				factor = 5
+            }
+			# SOV to SOV trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = SOV}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = MON}
+					}
+				}
+				factor = 40
+            }
+			# SOV-ALLIES to ALLIES trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = USA}
+						check_variable = {temp = SOV}
+						check_variable = {temp = FRA}
+						check_variable = {temp = ENG}
+						check_variable = {temp = CAN}
+						check_variable = {temp = MON}
+						check_variable = {temp = CHI}
+						check_variable = {temp = INS_HOL}
+						check_variable = {temp = HOL}
+						check_variable = {temp = AST}
+						check_variable = {temp = RAJ}
+						check_variable = {temp = SAF}
+						check_variable = {temp = MEX}
+						check_variable = {temp = NZL}
+						check_variable = {temp = IRE}
+						check_variable = {temp = BRA}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = USA}
+						check_variable = {temp = SOV}
+						check_variable = {temp = FRA}
+						check_variable = {temp = ENG}
+						check_variable = {temp = CAN}
+						check_variable = {temp = MON}
+						check_variable = {temp = CHI}
+						check_variable = {temp = INS_HOL}
+						check_variable = {temp = HOL}
+						check_variable = {temp = AST}
+						check_variable = {temp = RAJ}
+						check_variable = {temp = SAF}
+						check_variable = {temp = MEX}
+						check_variable = {temp = NZL}
+						check_variable = {temp = IRE}
+						check_variable = {temp = BRA}
+					}
+				}
+				factor = 20
+            }
+			# JAPAN to JAPAN trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+					}
+				}
+				factor = 20
+            }
+			modifier = {
+                # 满足以下任一情况，则将评分设为零 (factor = 0)：
+                OR = {
+                    # =================================================================
+                    # 1. 发起国 (FROM) 是亚洲国家的情况
+                    # 惩罚条件：FROM在亚洲，THIS不在亚洲/中东/欧洲，且FROM没有控制沿海省份。
+                    # (即FROM在亚洲，想和美洲、非洲、大洋洲的目标国THIS打交道，但没有出海口)
+                    # =================================================================
+                    AND = {
+                        # 发起国 (FROM) 在亚洲
+                        FROM.capital_scope = { is_on_continent = asia }
+                        
+                        # 目标国 (THIS) 不在亚洲、不在中东、不在欧洲
+                        NOT = { 
+                            OR = {
+                                THIS.capital_scope = { is_on_continent = asia }
+                                THIS.capital_scope = { is_on_continent = middle_east }
+                                THIS.capital_scope = { is_on_continent = europe }
+                            }
+                        }
+                        
+                        # 且发起国没有控制任何沿海省份
+                        NOT = {
+                            any_state = {
+                                is_controlled_by = FROM
+                                is_coastal = yes
+                            }
+                        }
+                    }
+                    
+                    # =================================================================
+                    # 2. 发起国 (FROM) 是美洲国家 (北美或南美) 的情况
+                    # 惩罚条件：FROM在美洲，THIS不在美洲，且FROM没有控制沿海省份。
+                    # (即FROM在美洲，想和亚洲、欧洲、非洲、大洋洲的目标国THIS打交道，但没有出海口)
+                    # =================================================================
+                    AND = {
+                        # 发起国 (FROM) 在美洲 (北美或南美)
+                        OR = {
+                            FROM.capital_scope = { is_on_continent = north_america }
+                            FROM.capital_scope = { is_on_continent = south_america }
+                        }
+                        
+                        # 目标国 (THIS) 不在美洲 (北美或南美)
+                        NOT = { 
+                            OR = {
+                                THIS.capital_scope = { is_on_continent = north_america }
+                                THIS.capital_scope = { is_on_continent = south_america }
+                            }
+                        }
+                        
+                        # 且发起国没有控制任何沿海省份
+                        NOT = {
+                            any_state = {
+                                is_controlled_by = FROM
+                                is_coastal = yes
+                            }
+                        }
+                    }
+                    
+                    # =================================================================
+                    # 3. 发起国 (FROM) 是大洋洲国家 (澳大利亚) 的情况 (新增要求)
+                    # 惩罚条件：FROM在大洋洲，THIS不在大洋洲/亚洲/中东，且FROM没有控制沿海省份。
+                    # (即FROM在大洋洲，想和美洲、欧洲、非洲的目标国THIS打交道，但没有出海口)
+                    # =================================================================
+                    AND = {
+                        # 发起国 (FROM) 在大洋洲 (australia)
+                        FROM.capital_scope = { is_on_continent = australia }
+                        
+                        # 目标国 (THIS) 不在邻近的大洲 (大洋洲、亚洲、中东)
+                        NOT = { 
+                            OR = {
+                                THIS.capital_scope = { is_on_continent = australia }
+                                THIS.capital_scope = { is_on_continent = asia }
+                                THIS.capital_scope = { is_on_continent = middle_east }
+                            }
+                        }
+                        
+                        # 且发起国没有控制任何沿海省份
+                        NOT = {
+                            any_state = {
+                                is_controlled_by = FROM
+                                is_coastal = yes
+                            }
+                        }
+                    }
+                }
+                
+                # 满足上述任一跨洲/无沿海条件，评分设为零
+                factor = 0
+            }
+		}
+	}
+}
+best_trader_tungsten_scorer = {
+	targets = {
+		# describe the target to consider
+		targets_dynamic = no
+		target_non_existing = no
+		#target_array = global.majors
+		target_array = global.countries
+		# MTTH like score description
+		# THIS is a target
+		# FROM is the initiator
+    	score = {
+			base = 0
+			modifier = {
+				add = resource_exported@tungsten
+			}
+			modifier = {
+				check_variable = {resource_exported@tungsten < 100}
+				factor = 0.001
+			}
+			modifier = {
+				has_opinion = {
+                    target = FROM
+                    value < 0
+                }
+				factor = 0.4
+			}
+            modifier = {
+				has_opinion = {
+                    target = FROM
+                    value > 50
+                }
+				factor = 1.25
+			}
+        	modifier = {
+				is_subject_of = FROM
+				factor = 80
+			}
+            modifier = {
+				is_puppet_of = FROM
+				factor = 100
+			}
+			modifier = {
+				check_variable = {FROM = THIS}
+				factor = 0
+			}
+			modifier = {
+				has_war_with = FROM
+				factor = 0
+			}
+			modifier = {
+				is_ally_with = FROM
+				factor = 10
+			}
+			modifier = {
+				has_non_aggression_pact_with = FROM
+				factor = 1.5
+			}
+			modifier = {
+				is_neighbor_of = FROM
+				factor = 4
+			}
+			# AXIS with AXIS trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = SPR}
+						check_variable = {temp = BUL}
+						# Add other tags as needed
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = SPR}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = BUL}
+						# Add other tags as needed
+					}
+				}
+				factor = 20
+            }
+			# AXIS with NEUTRAL trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = DEN}
+						check_variable = {temp = NOR}
+						check_variable = {temp = SWE}
+						check_variable = {temp = FIN}
+						check_variable = {temp = TUR}
+						check_variable = {temp = GRE}
+						check_variable = {temp = POR}
+						check_variable = {temp = VEN}
+						check_variable = {temp = SWI}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = IRE}
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+						check_variable = {temp = SPR}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = BUL}
+					}
+				}
+				factor = 2.5
+            }
+			# AXIS to ALLIES trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = USA}
+						check_variable = {temp = SOV}
+						check_variable = {temp = FRA}
+						check_variable = {temp = ENG}
+						check_variable = {temp = CAN}
+						check_variable = {temp = MON}
+						check_variable = {temp = CHI}
+						check_variable = {temp = INS_HOL}
+						check_variable = {temp = HOL}
+						check_variable = {temp = AST}
+						check_variable = {temp = RAJ}
+						check_variable = {temp = SAF}
+						check_variable = {temp = MEX}
+						check_variable = {temp = NZL}
+						check_variable = {temp = IRE}
+						check_variable = {temp = BRA}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+						check_variable = {temp = SPR}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = BUL}
+					}
+				}
+				factor = 0.01
+            }
+			# AXIS to JAPAN trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = SPR}
+						check_variable = {temp = BUL}
+					}
+				}
+				factor = 5
+            }
+			# SOV to SOV trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = SOV}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = MON}
+					}
+				}
+				factor = 40
+            }
+			# SOV-ALLIES to ALLIES trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = USA}
+						check_variable = {temp = SOV}
+						check_variable = {temp = FRA}
+						check_variable = {temp = ENG}
+						check_variable = {temp = CAN}
+						check_variable = {temp = MON}
+						check_variable = {temp = CHI}
+						check_variable = {temp = INS_HOL}
+						check_variable = {temp = HOL}
+						check_variable = {temp = AST}
+						check_variable = {temp = RAJ}
+						check_variable = {temp = SAF}
+						check_variable = {temp = MEX}
+						check_variable = {temp = NZL}
+						check_variable = {temp = IRE}
+						check_variable = {temp = BRA}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = USA}
+						check_variable = {temp = SOV}
+						check_variable = {temp = FRA}
+						check_variable = {temp = ENG}
+						check_variable = {temp = CAN}
+						check_variable = {temp = MON}
+						check_variable = {temp = CHI}
+						check_variable = {temp = INS_HOL}
+						check_variable = {temp = HOL}
+						check_variable = {temp = AST}
+						check_variable = {temp = RAJ}
+						check_variable = {temp = SAF}
+						check_variable = {temp = MEX}
+						check_variable = {temp = NZL}
+						check_variable = {temp = IRE}
+						check_variable = {temp = BRA}
+					}
+				}
+				factor = 20
+            }
+			# JAPAN to JAPAN trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+					}
+				}
+				factor = 20
+            }
+			modifier = {
+                # 满足以下任一情况，则将评分设为零 (factor = 0)：
+                OR = {
+                    # =================================================================
+                    # 1. 发起国 (FROM) 是亚洲国家的情况
+                    # 惩罚条件：FROM在亚洲，THIS不在亚洲/中东/欧洲，且FROM没有控制沿海省份。
+                    # (即FROM在亚洲，想和美洲、非洲、大洋洲的目标国THIS打交道，但没有出海口)
+                    # =================================================================
+                    AND = {
+                        # 发起国 (FROM) 在亚洲
+                        FROM.capital_scope = { is_on_continent = asia }
+                        
+                        # 目标国 (THIS) 不在亚洲、不在中东、不在欧洲
+                        NOT = { 
+                            OR = {
+                                THIS.capital_scope = { is_on_continent = asia }
+                                THIS.capital_scope = { is_on_continent = middle_east }
+                                THIS.capital_scope = { is_on_continent = europe }
+                            }
+                        }
+                        
+                        # 且发起国没有控制任何沿海省份
+                        NOT = {
+                            any_state = {
+                                is_controlled_by = FROM
+                                is_coastal = yes
+                            }
+                        }
+                    }
+                    
+                    # =================================================================
+                    # 2. 发起国 (FROM) 是美洲国家 (北美或南美) 的情况
+                    # 惩罚条件：FROM在美洲，THIS不在美洲，且FROM没有控制沿海省份。
+                    # (即FROM在美洲，想和亚洲、欧洲、非洲、大洋洲的目标国THIS打交道，但没有出海口)
+                    # =================================================================
+                    AND = {
+                        # 发起国 (FROM) 在美洲 (北美或南美)
+                        OR = {
+                            FROM.capital_scope = { is_on_continent = north_america }
+                            FROM.capital_scope = { is_on_continent = south_america }
+                        }
+                        
+                        # 目标国 (THIS) 不在美洲 (北美或南美)
+                        NOT = { 
+                            OR = {
+                                THIS.capital_scope = { is_on_continent = north_america }
+                                THIS.capital_scope = { is_on_continent = south_america }
+                            }
+                        }
+                        
+                        # 且发起国没有控制任何沿海省份
+                        NOT = {
+                            any_state = {
+                                is_controlled_by = FROM
+                                is_coastal = yes
+                            }
+                        }
+                    }
+                    
+                    # =================================================================
+                    # 3. 发起国 (FROM) 是大洋洲国家 (澳大利亚) 的情况 (新增要求)
+                    # 惩罚条件：FROM在大洋洲，THIS不在大洋洲/亚洲/中东，且FROM没有控制沿海省份。
+                    # (即FROM在大洋洲，想和美洲、欧洲、非洲的目标国THIS打交道，但没有出海口)
+                    # =================================================================
+                    AND = {
+                        # 发起国 (FROM) 在大洋洲 (australia)
+                        FROM.capital_scope = { is_on_continent = australia }
+                        
+                        # 目标国 (THIS) 不在邻近的大洲 (大洋洲、亚洲、中东)
+                        NOT = { 
+                            OR = {
+                                THIS.capital_scope = { is_on_continent = australia }
+                                THIS.capital_scope = { is_on_continent = asia }
+                                THIS.capital_scope = { is_on_continent = middle_east }
+                            }
+                        }
+                        
+                        # 且发起国没有控制任何沿海省份
+                        NOT = {
+                            any_state = {
+                                is_controlled_by = FROM
+                                is_coastal = yes
+                            }
+                        }
+                    }
+                }
+                
+                # 满足上述任一跨洲/无沿海条件，评分设为零
+                factor = 0
+            }
+    	}
+	}
+}
+best_trader_steel_scorer = {
+	targets = {
+		# describe the target to consider
+		targets_dynamic = no
+		target_non_existing = no
+		#target_array = global.majors
+		target_array = global.countries
+		# MTTH like score description
+		# THIS is a target
+		# FROM is the initiator
+    	score = {
+			base = 0
+			modifier = {
+				add = resource_exported@steel
+			}
+			modifier = {
+				check_variable = {resource_exported@steel < 100}
+				factor = 0.0001
+			}
+			modifier = {
+				has_opinion = {
+                    target = FROM
+                    value < 0
+                }
+				factor = 0.4
+			}
+            modifier = {
+				has_opinion = {
+                    target = FROM
+                    value > 50
+                }
+				factor = 1.25
+			}
+        	modifier = {
+				is_subject_of = FROM
+				factor = 80
+			}
+            modifier = {
+				is_puppet_of = FROM
+				factor = 100
+			}
+			modifier = {
+				check_variable = {FROM = THIS}
+				factor = 0
+			}
+			modifier = {
+				has_war_with = FROM
+				factor = 0
+			}
+			modifier = {
+				is_ally_with = FROM
+				factor = 10
+			}
+			modifier = {
+				has_non_aggression_pact_with = FROM
+				factor = 1.5
+			}
+			modifier = {
+				is_neighbor_of = FROM
+				factor = 4
+			}
+			# AXIS with AXIS trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = SPR}
+						check_variable = {temp = BUL}
+						# Add other tags as needed
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = SPR}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = BUL}
+						# Add other tags as needed
+					}
+				}
+				factor = 20
+            }
+			# AXIS with NEUTRAL trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = DEN}
+						check_variable = {temp = NOR}
+						check_variable = {temp = SWE}
+						check_variable = {temp = FIN}
+						check_variable = {temp = TUR}
+						check_variable = {temp = GRE}
+						check_variable = {temp = POR}
+						check_variable = {temp = VEN}
+						check_variable = {temp = SWI}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = IRE}
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+						check_variable = {temp = SPR}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = BUL}
+					}
+				}
+				factor = 2.5
+            }
+			# AXIS to ALLIES trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = USA}
+						check_variable = {temp = SOV}
+						check_variable = {temp = FRA}
+						check_variable = {temp = ENG}
+						check_variable = {temp = CAN}
+						check_variable = {temp = MON}
+						check_variable = {temp = CHI}
+						check_variable = {temp = INS_HOL}
+						check_variable = {temp = HOL}
+						check_variable = {temp = AST}
+						check_variable = {temp = RAJ}
+						check_variable = {temp = SAF}
+						check_variable = {temp = MEX}
+						check_variable = {temp = NZL}
+						check_variable = {temp = IRE}
+						check_variable = {temp = BRA}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+						check_variable = {temp = SPR}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = BUL}
+					}
+				}
+				factor = 0.01
+            }
+			# AXIS to JAPAN trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = SPR}
+						check_variable = {temp = BUL}
+					}
+				}
+				factor = 5
+            }
+			# SOV to SOV trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = SOV}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = MON}
+					}
+				}
+				factor = 40
+            }
+			# SOV-ALLIES to ALLIES trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = USA}
+						check_variable = {temp = SOV}
+						check_variable = {temp = FRA}
+						check_variable = {temp = ENG}
+						check_variable = {temp = CAN}
+						check_variable = {temp = MON}
+						check_variable = {temp = CHI}
+						check_variable = {temp = INS_HOL}
+						check_variable = {temp = HOL}
+						check_variable = {temp = AST}
+						check_variable = {temp = RAJ}
+						check_variable = {temp = SAF}
+						check_variable = {temp = MEX}
+						check_variable = {temp = NZL}
+						check_variable = {temp = IRE}
+						check_variable = {temp = BRA}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = USA}
+						check_variable = {temp = SOV}
+						check_variable = {temp = FRA}
+						check_variable = {temp = ENG}
+						check_variable = {temp = CAN}
+						check_variable = {temp = MON}
+						check_variable = {temp = CHI}
+						check_variable = {temp = INS_HOL}
+						check_variable = {temp = HOL}
+						check_variable = {temp = AST}
+						check_variable = {temp = RAJ}
+						check_variable = {temp = SAF}
+						check_variable = {temp = MEX}
+						check_variable = {temp = NZL}
+						check_variable = {temp = IRE}
+						check_variable = {temp = BRA}
+					}
+				}
+				factor = 20
+            }
+			# JAPAN to JAPAN trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+					}
+				}
+				factor = 20
+            }
+			modifier = {
+                # 满足以下任一情况，则将评分设为零 (factor = 0)：
+                OR = {
+                    # =================================================================
+                    # 1. 发起国 (FROM) 是亚洲国家的情况
+                    # 惩罚条件：FROM在亚洲，THIS不在亚洲/中东/欧洲，且FROM没有控制沿海省份。
+                    # (即FROM在亚洲，想和美洲、非洲、大洋洲的目标国THIS打交道，但没有出海口)
+                    # =================================================================
+                    AND = {
+                        # 发起国 (FROM) 在亚洲
+                        FROM.capital_scope = { is_on_continent = asia }
+                        
+                        # 目标国 (THIS) 不在亚洲、不在中东、不在欧洲
+                        NOT = { 
+                            OR = {
+                                THIS.capital_scope = { is_on_continent = asia }
+                                THIS.capital_scope = { is_on_continent = middle_east }
+                                THIS.capital_scope = { is_on_continent = europe }
+                            }
+                        }
+                        
+                        # 且发起国没有控制任何沿海省份
+                        NOT = {
+                            any_state = {
+                                is_controlled_by = FROM
+                                is_coastal = yes
+                            }
+                        }
+                    }
+                    
+                    # =================================================================
+                    # 2. 发起国 (FROM) 是美洲国家 (北美或南美) 的情况
+                    # 惩罚条件：FROM在美洲，THIS不在美洲，且FROM没有控制沿海省份。
+                    # (即FROM在美洲，想和亚洲、欧洲、非洲、大洋洲的目标国THIS打交道，但没有出海口)
+                    # =================================================================
+                    AND = {
+                        # 发起国 (FROM) 在美洲 (北美或南美)
+                        OR = {
+                            FROM.capital_scope = { is_on_continent = north_america }
+                            FROM.capital_scope = { is_on_continent = south_america }
+                        }
+                        
+                        # 目标国 (THIS) 不在美洲 (北美或南美)
+                        NOT = { 
+                            OR = {
+                                THIS.capital_scope = { is_on_continent = north_america }
+                                THIS.capital_scope = { is_on_continent = south_america }
+                            }
+                        }
+                        
+                        # 且发起国没有控制任何沿海省份
+                        NOT = {
+                            any_state = {
+                                is_controlled_by = FROM
+                                is_coastal = yes
+                            }
+                        }
+                    }
+                    
+                    # =================================================================
+                    # 3. 发起国 (FROM) 是大洋洲国家 (澳大利亚) 的情况 (新增要求)
+                    # 惩罚条件：FROM在大洋洲，THIS不在大洋洲/亚洲/中东，且FROM没有控制沿海省份。
+                    # (即FROM在大洋洲，想和美洲、欧洲、非洲的目标国THIS打交道，但没有出海口)
+                    # =================================================================
+                    AND = {
+                        # 发起国 (FROM) 在大洋洲 (australia)
+                        FROM.capital_scope = { is_on_continent = australia }
+                        
+                        # 目标国 (THIS) 不在邻近的大洲 (大洋洲、亚洲、中东)
+                        NOT = { 
+                            OR = {
+                                THIS.capital_scope = { is_on_continent = australia }
+                                THIS.capital_scope = { is_on_continent = asia }
+                                THIS.capital_scope = { is_on_continent = middle_east }
+                            }
+                        }
+                        
+                        # 且发起国没有控制任何沿海省份
+                        NOT = {
+                            any_state = {
+                                is_controlled_by = FROM
+                                is_coastal = yes
+                            }
+                        }
+                    }
+                }
+                
+                # 满足上述任一跨洲/无沿海条件，评分设为零
+                factor = 0
+            }
+    	}
+	}
+}
+best_trader_chromium_scorer = {
+	targets = {
+		# describe the target to consider
+		targets_dynamic = no
+		target_non_existing = no
+		#target_array = global.majors
+		target_array = global.countries
+		# MTTH like score description
+		# THIS is a target
+		# FROM is the initiator
+    	score = {
+			base = 0
+			modifier = {
+				add = resource_exported@chromium
+			}
+			modifier = {
+				check_variable = {resource_exported@chromium < 50}
+				factor = 0.0001
+			}
+			modifier = {
+				has_opinion = {
+                    target = FROM
+                    value < 0
+                }
+				factor = 0.4
+			}
+            modifier = {
+				has_opinion = {
+                    target = FROM
+                    value > 50
+                }
+				factor = 1.25
+			}
+        	modifier = {
+				is_subject_of = FROM
+				factor = 80
+			}
+            modifier = {
+				is_puppet_of = FROM
+				factor = 100
+			}
+			modifier = {
+				check_variable = {FROM = THIS}
+				factor = 0
+			}
+			modifier = {
+				has_war_with = FROM
+				factor = 0
+			}
+			modifier = {
+				is_ally_with = FROM
+				factor = 10
+			}
+			modifier = {
+				has_non_aggression_pact_with = FROM
+				factor = 1.5
+			}
+			modifier = {
+				is_neighbor_of = FROM
+				factor = 4
+			}
+			# AXIS with AXIS trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = SPR}
+						check_variable = {temp = BUL}
+						# Add other tags as needed
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = SPR}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = BUL}
+						# Add other tags as needed
+					}
+				}
+				factor = 20
+            }
+			# AXIS with NEUTRAL trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = DEN}
+						check_variable = {temp = NOR}
+						check_variable = {temp = SWE}
+						check_variable = {temp = FIN}
+						check_variable = {temp = TUR}
+						check_variable = {temp = GRE}
+						check_variable = {temp = POR}
+						check_variable = {temp = VEN}
+						check_variable = {temp = SWI}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = IRE}
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+						check_variable = {temp = SPR}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = BUL}
+					}
+				}
+				factor = 2.5
+            }
+			# AXIS to ALLIES trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = USA}
+						check_variable = {temp = SOV}
+						check_variable = {temp = FRA}
+						check_variable = {temp = ENG}
+						check_variable = {temp = CAN}
+						check_variable = {temp = MON}
+						check_variable = {temp = CHI}
+						check_variable = {temp = INS_HOL}
+						check_variable = {temp = HOL}
+						check_variable = {temp = AST}
+						check_variable = {temp = RAJ}
+						check_variable = {temp = SAF}
+						check_variable = {temp = MEX}
+						check_variable = {temp = NZL}
+						check_variable = {temp = IRE}
+						check_variable = {temp = BRA}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+						check_variable = {temp = SPR}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = BUL}
+					}
+				}
+				factor = 0.01
+            }
+			# AXIS to JAPAN trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = SPR}
+						check_variable = {temp = BUL}
+					}
+				}
+				factor = 5
+            }
+			# SOV to SOV trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = SOV}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = MON}
+					}
+				}
+				factor = 40
+            }
+			# SOV-ALLIES to ALLIES trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = USA}
+						check_variable = {temp = SOV}
+						check_variable = {temp = FRA}
+						check_variable = {temp = ENG}
+						check_variable = {temp = CAN}
+						check_variable = {temp = MON}
+						check_variable = {temp = CHI}
+						check_variable = {temp = INS_HOL}
+						check_variable = {temp = HOL}
+						check_variable = {temp = AST}
+						check_variable = {temp = RAJ}
+						check_variable = {temp = SAF}
+						check_variable = {temp = MEX}
+						check_variable = {temp = NZL}
+						check_variable = {temp = IRE}
+						check_variable = {temp = BRA}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = USA}
+						check_variable = {temp = SOV}
+						check_variable = {temp = FRA}
+						check_variable = {temp = ENG}
+						check_variable = {temp = CAN}
+						check_variable = {temp = MON}
+						check_variable = {temp = CHI}
+						check_variable = {temp = INS_HOL}
+						check_variable = {temp = HOL}
+						check_variable = {temp = AST}
+						check_variable = {temp = RAJ}
+						check_variable = {temp = SAF}
+						check_variable = {temp = MEX}
+						check_variable = {temp = NZL}
+						check_variable = {temp = IRE}
+						check_variable = {temp = BRA}
+					}
+				}
+				factor = 20
+            }
+			# JAPAN to JAPAN trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+					}
+				}
+				factor = 20
+            }
+			modifier = {
+                # 满足以下任一情况，则将评分设为零 (factor = 0)：
+                OR = {
+                    # =================================================================
+                    # 1. 发起国 (FROM) 是亚洲国家的情况
+                    # 惩罚条件：FROM在亚洲，THIS不在亚洲/中东/欧洲，且FROM没有控制沿海省份。
+                    # (即FROM在亚洲，想和美洲、非洲、大洋洲的目标国THIS打交道，但没有出海口)
+                    # =================================================================
+                    AND = {
+                        # 发起国 (FROM) 在亚洲
+                        FROM.capital_scope = { is_on_continent = asia }
+                        
+                        # 目标国 (THIS) 不在亚洲、不在中东、不在欧洲
+                        NOT = { 
+                            OR = {
+                                THIS.capital_scope = { is_on_continent = asia }
+                                THIS.capital_scope = { is_on_continent = middle_east }
+                                THIS.capital_scope = { is_on_continent = europe }
+                            }
+                        }
+                        
+                        # 且发起国没有控制任何沿海省份
+                        NOT = {
+                            any_state = {
+                                is_controlled_by = FROM
+                                is_coastal = yes
+                            }
+                        }
+                    }
+                    
+                    # =================================================================
+                    # 2. 发起国 (FROM) 是美洲国家 (北美或南美) 的情况
+                    # 惩罚条件：FROM在美洲，THIS不在美洲，且FROM没有控制沿海省份。
+                    # (即FROM在美洲，想和亚洲、欧洲、非洲、大洋洲的目标国THIS打交道，但没有出海口)
+                    # =================================================================
+                    AND = {
+                        # 发起国 (FROM) 在美洲 (北美或南美)
+                        OR = {
+                            FROM.capital_scope = { is_on_continent = north_america }
+                            FROM.capital_scope = { is_on_continent = south_america }
+                        }
+                        
+                        # 目标国 (THIS) 不在美洲 (北美或南美)
+                        NOT = { 
+                            OR = {
+                                THIS.capital_scope = { is_on_continent = north_america }
+                                THIS.capital_scope = { is_on_continent = south_america }
+                            }
+                        }
+                        
+                        # 且发起国没有控制任何沿海省份
+                        NOT = {
+                            any_state = {
+                                is_controlled_by = FROM
+                                is_coastal = yes
+                            }
+                        }
+                    }
+                    
+                    # =================================================================
+                    # 3. 发起国 (FROM) 是大洋洲国家 (澳大利亚) 的情况 (新增要求)
+                    # 惩罚条件：FROM在大洋洲，THIS不在大洋洲/亚洲/中东，且FROM没有控制沿海省份。
+                    # (即FROM在大洋洲，想和美洲、欧洲、非洲的目标国THIS打交道，但没有出海口)
+                    # =================================================================
+                    AND = {
+                        # 发起国 (FROM) 在大洋洲 (australia)
+                        FROM.capital_scope = { is_on_continent = australia }
+                        
+                        # 目标国 (THIS) 不在邻近的大洲 (大洋洲、亚洲、中东)
+                        NOT = { 
+                            OR = {
+                                THIS.capital_scope = { is_on_continent = australia }
+                                THIS.capital_scope = { is_on_continent = asia }
+                                THIS.capital_scope = { is_on_continent = middle_east }
+                            }
+                        }
+                        
+                        # 且发起国没有控制任何沿海省份
+                        NOT = {
+                            any_state = {
+                                is_controlled_by = FROM
+                                is_coastal = yes
+                            }
+                        }
+                    }
+                }
+                
+                # 满足上述任一跨洲/无沿海条件，评分设为零
+                factor = 0
+            }
+    	}
+	}
+}
+best_trader_coal_scorer = {
+	targets = {
+		# describe the target to consider
+		targets_dynamic = no
+		target_non_existing = no
+		#target_array = global.majors
+		target_array = global.countries
+		# MTTH like score description
+		# THIS is a target
+		# FROM is the initiator
+    	score = {
+			base = 0
+			modifier = {
+				add = resource_exported@chromium
+			}
+			modifier = {
+				check_variable = {resource_exported@chromium < 50}
+				factor = 0.0001
+			}
+			modifier = {
+				has_opinion = {
+                    target = FROM
+                    value < 0
+                }
+				factor = 0.4
+			}
+            modifier = {
+				has_opinion = {
+                    target = FROM
+                    value > 50
+                }
+				factor = 1.25
+			}
+        	modifier = {
+				is_subject_of = FROM
+				factor = 80
+			}
+            modifier = {
+				is_puppet_of = FROM
+				factor = 100
+			}
+			modifier = {
+				check_variable = {FROM = THIS}
+				factor = 0
+			}
+			modifier = {
+				has_war_with = FROM
+				factor = 0
+			}
+			modifier = {
+				is_ally_with = FROM
+				factor = 10
+			}
+			modifier = {
+				has_non_aggression_pact_with = FROM
+				factor = 1.5
+			}
+			modifier = {
+				is_neighbor_of = FROM
+				factor = 4
+			}
+			# AXIS with AXIS trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = SPR}
+						check_variable = {temp = BUL}
+						# Add other tags as needed
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = SPR}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = BUL}
+						# Add other tags as needed
+					}
+				}
+				factor = 20
+            }
+			# AXIS with NEUTRAL trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = DEN}
+						check_variable = {temp = NOR}
+						check_variable = {temp = SWE}
+						check_variable = {temp = FIN}
+						check_variable = {temp = TUR}
+						check_variable = {temp = GRE}
+						check_variable = {temp = POR}
+						check_variable = {temp = VEN}
+						check_variable = {temp = SWI}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = IRE}
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+						check_variable = {temp = SPR}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = BUL}
+					}
+				}
+				factor = 2.5
+            }
+			# AXIS to ALLIES trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = USA}
+						check_variable = {temp = SOV}
+						check_variable = {temp = FRA}
+						check_variable = {temp = ENG}
+						check_variable = {temp = CAN}
+						check_variable = {temp = MON}
+						check_variable = {temp = CHI}
+						check_variable = {temp = INS_HOL}
+						check_variable = {temp = HOL}
+						check_variable = {temp = AST}
+						check_variable = {temp = RAJ}
+						check_variable = {temp = SAF}
+						check_variable = {temp = MEX}
+						check_variable = {temp = NZL}
+						check_variable = {temp = IRE}
+						check_variable = {temp = BRA}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+						check_variable = {temp = SPR}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = BUL}
+					}
+				}
+				factor = 0.01
+            }
+			# AXIS to JAPAN trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = GER}
+						check_variable = {temp = ITA}
+						check_variable = {temp = HUN}
+						check_variable = {temp = ROM}
+						check_variable = {temp = SPR}
+						check_variable = {temp = BUL}
+					}
+				}
+				factor = 5
+            }
+			# SOV to SOV trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = SOV}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = MON}
+					}
+				}
+				factor = 40
+            }
+			# SOV-ALLIES to ALLIES trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = USA}
+						check_variable = {temp = SOV}
+						check_variable = {temp = FRA}
+						check_variable = {temp = ENG}
+						check_variable = {temp = CAN}
+						check_variable = {temp = MON}
+						check_variable = {temp = CHI}
+						check_variable = {temp = INS_HOL}
+						check_variable = {temp = HOL}
+						check_variable = {temp = AST}
+						check_variable = {temp = RAJ}
+						check_variable = {temp = SAF}
+						check_variable = {temp = MEX}
+						check_variable = {temp = NZL}
+						check_variable = {temp = IRE}
+						check_variable = {temp = BRA}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = USA}
+						check_variable = {temp = SOV}
+						check_variable = {temp = FRA}
+						check_variable = {temp = ENG}
+						check_variable = {temp = CAN}
+						check_variable = {temp = MON}
+						check_variable = {temp = CHI}
+						check_variable = {temp = INS_HOL}
+						check_variable = {temp = HOL}
+						check_variable = {temp = AST}
+						check_variable = {temp = RAJ}
+						check_variable = {temp = SAF}
+						check_variable = {temp = MEX}
+						check_variable = {temp = NZL}
+						check_variable = {temp = IRE}
+						check_variable = {temp = BRA}
+					}
+				}
+				factor = 20
+            }
+			# JAPAN to JAPAN trade
+			modifier = {
+				AND = {
+					set_temp_variable = { temp = THIS }
+					OR = { 
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+					}
+					set_temp_variable = { temp = FROM }
+					OR = { 
+						check_variable = {temp = JAP}
+						check_variable = {temp = MAN}
+						check_variable = {temp = SIA}
+					}
+				}
+				factor = 20
+            }
+			modifier = {
+                # 满足以下任一情况，则将评分设为零 (factor = 0)：
+                OR = {
+                    # =================================================================
+                    # 1. 发起国 (FROM) 是亚洲国家的情况
+                    # 惩罚条件：FROM在亚洲，THIS不在亚洲/中东/欧洲，且FROM没有控制沿海省份。
+                    # (即FROM在亚洲，想和美洲、非洲、大洋洲的目标国THIS打交道，但没有出海口)
+                    # =================================================================
+                    AND = {
+                        # 发起国 (FROM) 在亚洲
+                        FROM.capital_scope = { is_on_continent = asia }
+                        
+                        # 目标国 (THIS) 不在亚洲、不在中东、不在欧洲
+                        NOT = { 
+                            OR = {
+                                THIS.capital_scope = { is_on_continent = asia }
+                                THIS.capital_scope = { is_on_continent = middle_east }
+                                THIS.capital_scope = { is_on_continent = europe }
+                            }
+                        }
+                        
+                        # 且发起国没有控制任何沿海省份
+                        NOT = {
+                            any_state = {
+                                is_controlled_by = FROM
+                                is_coastal = yes
+                            }
+                        }
+                    }
+                    
+                    # =================================================================
+                    # 2. 发起国 (FROM) 是美洲国家 (北美或南美) 的情况
+                    # 惩罚条件：FROM在美洲，THIS不在美洲，且FROM没有控制沿海省份。
+                    # (即FROM在美洲，想和亚洲、欧洲、非洲、大洋洲的目标国THIS打交道，但没有出海口)
+                    # =================================================================
+                    AND = {
+                        # 发起国 (FROM) 在美洲 (北美或南美)
+                        OR = {
+                            FROM.capital_scope = { is_on_continent = north_america }
+                            FROM.capital_scope = { is_on_continent = south_america }
+                        }
+                        
+                        # 目标国 (THIS) 不在美洲 (北美或南美)
+                        NOT = { 
+                            OR = {
+                                THIS.capital_scope = { is_on_continent = north_america }
+                                THIS.capital_scope = { is_on_continent = south_america }
+                            }
+                        }
+                        
+                        # 且发起国没有控制任何沿海省份
+                        NOT = {
+                            any_state = {
+                                is_controlled_by = FROM
+                                is_coastal = yes
+                            }
+                        }
+                    }
+                    
+                    # =================================================================
+                    # 3. 发起国 (FROM) 是大洋洲国家 (澳大利亚) 的情况 (新增要求)
+                    # 惩罚条件：FROM在大洋洲，THIS不在大洋洲/亚洲/中东，且FROM没有控制沿海省份。
+                    # (即FROM在大洋洲，想和美洲、欧洲、非洲的目标国THIS打交道，但没有出海口)
+                    # =================================================================
+                    AND = {
+                        # 发起国 (FROM) 在大洋洲 (australia)
+                        FROM.capital_scope = { is_on_continent = australia }
+                        
+                        # 目标国 (THIS) 不在邻近的大洲 (大洋洲、亚洲、中东)
+                        NOT = { 
+                            OR = {
+                                THIS.capital_scope = { is_on_continent = australia }
+                                THIS.capital_scope = { is_on_continent = asia }
+                                THIS.capital_scope = { is_on_continent = middle_east }
+                            }
+                        }
+                        
+                        # 且发起国没有控制任何沿海省份
+                        NOT = {
+                            any_state = {
+                                is_controlled_by = FROM
+                                is_coastal = yes
+                            }
+                        }
+                    }
+                }
+                
+                # 满足上述任一跨洲/无沿海条件，评分设为零
+                factor = 0
+            }
+    	}
+	}
+}
