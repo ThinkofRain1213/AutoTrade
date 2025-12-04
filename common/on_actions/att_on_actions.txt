@@ -83,19 +83,6 @@ on_actions = {
 										min = 8
 									}
 
-									set_temp_variable = {temp_traded_resources = traded_resources}
-									modulo_temp_variable = {temp_traded_resources = 8}
-									if = {
-										limit = {
-											check_variable = {temp_traded_resources > 0}
-										}
-										subtract_from_temp_variable = {traded_resources = temp_traded_resources}
-									}
-									clamp_temp_variable = {
-										var = traded_resources
-										min = 8
-									}
-
 									meta_effect = {
 										text = {
 											create_import = {
@@ -178,19 +165,6 @@ on_actions = {
 											check_variable = { temp_traded_resources > 0 }
 										}
 										subtract_from_temp_variable = { traded_resources = temp_traded_resources }
-									}
-									clamp_temp_variable = {
-										var = traded_resources
-										min = 8
-									}
-
-									set_temp_variable = {temp_traded_resources = traded_resources}
-									modulo_temp_variable = {temp_traded_resources = 8}
-									if = {
-										limit = {
-											check_variable = {temp_traded_resources > 0}
-										}
-										subtract_from_temp_variable = {traded_resources = temp_traded_resources}
 									}
 									clamp_temp_variable = {
 										var = traded_resources
@@ -285,19 +259,6 @@ on_actions = {
 										min = 8
 									}
 
-									set_temp_variable = {temp_traded_resources = traded_resources}
-									modulo_temp_variable = {temp_traded_resources = 8}
-									if = {
-										limit = {
-											check_variable = {temp_traded_resources > 0}
-										}
-										subtract_from_temp_variable = {traded_resources = temp_traded_resources}
-									}
-									clamp_temp_variable = {
-										var = traded_resources
-										min = 8
-									}
-
 									meta_effect = {
 										text = {
 											create_import = {
@@ -380,19 +341,6 @@ on_actions = {
 											check_variable = { temp_traded_resources > 0 }
 										}
 										subtract_from_temp_variable = { traded_resources = temp_traded_resources }
-									}
-									clamp_temp_variable = {
-										var = traded_resources
-										min = 8
-									}
-
-									set_temp_variable = {temp_traded_resources = traded_resources}
-									modulo_temp_variable = {temp_traded_resources = 8}
-									if = {
-										limit = {
-											check_variable = {temp_traded_resources > 0}
-										}
-										subtract_from_temp_variable = {traded_resources = temp_traded_resources}
 									}
 									clamp_temp_variable = {
 										var = traded_resources
@@ -487,19 +435,6 @@ on_actions = {
 										min = 8
 									}
 
-									set_temp_variable = {temp_traded_resources = traded_resources}
-									modulo_temp_variable = {temp_traded_resources = 8}
-									if = {
-										limit = {
-											check_variable = {temp_traded_resources > 0}
-										}
-										subtract_from_temp_variable = {traded_resources = temp_traded_resources}
-									}
-									clamp_temp_variable = {
-										var = traded_resources
-										min = 8
-									}
-
 									meta_effect = {
 										text = {
 											create_import = {
@@ -582,19 +517,6 @@ on_actions = {
 											check_variable = { temp_traded_resources > 0 }
 										}
 										subtract_from_temp_variable = { traded_resources = temp_traded_resources }
-									}
-									clamp_temp_variable = {
-										var = traded_resources
-										min = 8
-									}
-
-									set_temp_variable = {temp_traded_resources = traded_resources}
-									modulo_temp_variable = {temp_traded_resources = 8}
-									if = {
-										limit = {
-											check_variable = {temp_traded_resources > 0}
-										}
-										subtract_from_temp_variable = {traded_resources = temp_traded_resources}
 									}
 									clamp_temp_variable = {
 										var = traded_resources
