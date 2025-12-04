@@ -324,8 +324,6 @@ best_trader_aluminium_scorer = {
                         NOT = { 
                             OR = {
                                 THIS.capital_scope = { is_on_continent = australia }
-                                THIS.capital_scope = { is_on_continent = asia }
-                                THIS.capital_scope = { is_on_continent = middle_east }
                             }
                         }
                         
@@ -672,8 +670,6 @@ best_trader_rubber_scorer = {
                         NOT = { 
                             OR = {
                                 THIS.capital_scope = { is_on_continent = australia }
-                                THIS.capital_scope = { is_on_continent = asia }
-                                THIS.capital_scope = { is_on_continent = middle_east }
                             }
                         }
                         
@@ -1019,8 +1015,6 @@ best_trader_tungsten_scorer = {
                         NOT = { 
                             OR = {
                                 THIS.capital_scope = { is_on_continent = australia }
-                                THIS.capital_scope = { is_on_continent = asia }
-                                THIS.capital_scope = { is_on_continent = middle_east }
                             }
                         }
                         
@@ -1366,8 +1360,6 @@ best_trader_steel_scorer = {
                         NOT = { 
                             OR = {
                                 THIS.capital_scope = { is_on_continent = australia }
-                                THIS.capital_scope = { is_on_continent = asia }
-                                THIS.capital_scope = { is_on_continent = middle_east }
                             }
                         }
                         
@@ -1713,8 +1705,6 @@ best_trader_chromium_scorer = {
                         NOT = { 
                             OR = {
                                 THIS.capital_scope = { is_on_continent = australia }
-                                THIS.capital_scope = { is_on_continent = asia }
-                                THIS.capital_scope = { is_on_continent = middle_east }
                             }
                         }
                         
@@ -2060,8 +2050,6 @@ best_trader_coal_scorer = {
                         NOT = { 
                             OR = {
                                 THIS.capital_scope = { is_on_continent = australia }
-                                THIS.capital_scope = { is_on_continent = asia }
-                                THIS.capital_scope = { is_on_continent = middle_east }
                             }
                         }
                         

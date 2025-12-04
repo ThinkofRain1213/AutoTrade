@@ -15,11 +15,21 @@ on_actions = {
 					# RUBBER
 	            	if = {
                     	limit = {
-							check_variable = {resource@rubber < 0}
+							check_variable = { resource@rubber < 0 }
                     	}
-						set_temp_variable = {import_needed = -1}
-						multiply_temp_variable = {import_needed = resource@rubber}
-						add_to_temp_variable = {import_needed = resource_imported@rubber}
+						set_temp_variable = { import_needed = -1 }
+						multiply_temp_variable = { import_needed = resource@rubber }
+						add_to_temp_variable = { import_needed = resource_imported@rubber }
+
+						set_temp_variable = { import_needed_remainder = import_needed }
+						modulo_temp_variable = { import_needed_remainder = 8 }
+						if = {
+							limit = {
+								check_variable = { import_needed_remainder > 0 }
+							}
+							subtract_from_temp_variable = { import_needed = import_needed_remainder }
+							add_to_temp_variable = { import_needed = 8  }
+						}
                     	
 						get_sorted_scored_countries_temp = {
 							scorer = best_trader_rubber_scorer  
@@ -34,32 +44,43 @@ on_actions = {
 							if = {
         						limit = {
 									NOT = {
-										check_variable = {trader = FROM}
+										check_variable = { trader = FROM }
 									}
         						}
 								if = {
 									limit = {
-										check_variable = {import_needed < 1}
+										check_variable = { import_needed < 1 }
 									}
-									set_temp_variable = {break = 1}
+									set_temp_variable = { break = 1 }
 								}
 								else = {
-									set_temp_variable = {export_max = 0}
+									set_temp_variable = { export_max = 0 }
 
 									var:trader = {
-										add_to_temp_variable = {export_max = resource_exported@rubber}
+										add_to_temp_variable = { export_max = resource_exported@rubber }
 									}
-
-									set_temp_variable = {current_import_amount = resource_imported@rubber}
 
 									if = {
 										limit = {
-											check_variable = {export_max < import_needed}
+											check_variable = { export_max < import_needed }
 										}
-										set_temp_variable = {traded_resources = export_max}
+										set_temp_variable = { traded_resources = export_max }
 									}
 									else = {
-										set_temp_variable = {traded_resources = import_needed}
+										set_temp_variable = { traded_resources = import_needed }
+									}
+
+									set_temp_variable = { temp_traded_resources = traded_resources }
+									modulo_temp_variable = { temp_traded_resources = 8}
+									if = {
+										limit = {
+											check_variable = { temp_traded_resources > 0 }
+										}
+										subtract_from_temp_variable = { traded_resources = temp_traded_resources }
+									}
+									clamp_temp_variable = {
+										var = traded_resources
+										min = 8
 									}
 
 									set_temp_variable = {temp_traded_resources = traded_resources}
@@ -87,7 +108,7 @@ on_actions = {
 										EXPORTER = "[?trader.GetTag]"
 									}
 
-									subtract_from_temp_variable = {import_needed = traded_resources}
+									subtract_from_temp_variable = { import_needed = traded_resources }
 								}
     						}		
 						}
@@ -96,11 +117,21 @@ on_actions = {
 					# ALUMINIUM
 	            	if = {
                     	limit = {
-                        	check_variable = {resource@aluminium < 0}
+                        	check_variable = { resource@aluminium < 0 }
                     	}
-                    	set_temp_variable = {import_needed = -1}
-						multiply_temp_variable = {import_needed = resource@aluminium}
-						add_to_temp_variable = {import_needed = resource_imported@aluminium}
+                    	set_temp_variable = { import_needed = -1 }
+						multiply_temp_variable = { import_needed = resource@aluminium }
+						add_to_temp_variable = { import_needed = resource_imported@aluminium }
+
+						set_temp_variable = { import_needed_remainder = import_needed }
+						modulo_temp_variable = { import_needed_remainder = 8 }
+						if = {
+							limit = {
+								check_variable = { import_needed_remainder > 0 }
+							}
+							subtract_from_temp_variable = { import_needed = import_needed_remainder }
+							add_to_temp_variable = { import_needed = 8  }
+						}
 
 						get_sorted_scored_countries_temp = {
 							scorer = best_trader_aluminium_scorer  
@@ -114,32 +145,43 @@ on_actions = {
 							if = {
         						limit = {
 									NOT = {
-										check_variable = {trader = FROM}
+										check_variable = { trader = FROM }
 									}
         						}
 								if = {
 									limit = {
-										check_variable = {import_needed < 1}
+										check_variable = { import_needed < 1 }
 									}
-									set_temp_variable = {break = 1}
+									set_temp_variable = { break = 1 }
 								}
 								else = {
-									set_temp_variable = {export_max = 0}
+									set_temp_variable = { export_max = 0 }
 
 									var:trader = {
-										add_to_temp_variable = {export_max = resource_exported@aluminium}
+										add_to_temp_variable = { export_max = resource_exported@aluminium }
 									}
-
-									set_temp_variable = {current_import_amount = resource_imported@aluminium}
 
 									if = {
 										limit = {
-											check_variable = {export_max < import_needed}
+											check_variable = { export_max < import_needed }
 										}
-										set_temp_variable = {traded_resources = export_max}
+										set_temp_variable = { traded_resources = export_max }
 									}
 									else = {
-										set_temp_variable = {traded_resources = import_needed}
+										set_temp_variable = { traded_resources = import_needed }
+									}
+
+									set_temp_variable = { temp_traded_resources = traded_resources }
+									modulo_temp_variable = { temp_traded_resources = 8}
+									if = {
+										limit = {
+											check_variable = { temp_traded_resources > 0 }
+										}
+										subtract_from_temp_variable = { traded_resources = temp_traded_resources }
+									}
+									clamp_temp_variable = {
+										var = traded_resources
+										min = 8
 									}
 
 									set_temp_variable = {temp_traded_resources = traded_resources}
@@ -167,7 +209,7 @@ on_actions = {
 										EXPORTER = "[?trader.GetTag]"
 									}
 
-									subtract_from_temp_variable = {import_needed = traded_resources}
+									subtract_from_temp_variable = { import_needed = traded_resources }
 								}
     						}
 						}
@@ -176,11 +218,21 @@ on_actions = {
 					# TUNGSTEN
 					if = {
                     	limit = {
-                        	check_variable = {resource@tungsten < 0}
+                        	check_variable = { resource@tungsten < 0 }
                     	}
-                    	set_temp_variable = {import_needed = -1}
-                        multiply_temp_variable = {import_needed = resource@tungsten}
-                        add_to_temp_variable = {import_needed = resource_imported@tungsten}
+                    	set_temp_variable = { import_needed = -1 }
+                        multiply_temp_variable = { import_needed = resource@tungsten }
+                        add_to_temp_variable = { import_needed = resource_imported@tungsten }
+
+						set_temp_variable = { import_needed_remainder = import_needed }
+						modulo_temp_variable = { import_needed_remainder = 8 }
+						if = {
+							limit = {
+								check_variable = { import_needed_remainder > 0 }
+							}
+							subtract_from_temp_variable = { import_needed = import_needed_remainder }
+							add_to_temp_variable = { import_needed = 8  }
+						}
 
 						get_sorted_scored_countries_temp = {
 							scorer = best_trader_tungsten_scorer  
@@ -194,32 +246,43 @@ on_actions = {
 							if = {
         						limit = {
 									NOT = {
-										check_variable = {trader = FROM}
+										check_variable = { trader = FROM }
 									}
         						}
 								if = {
 									limit = {
-										check_variable = {import_needed < 1}
+										check_variable = { import_needed < 1 }
 									}
-									set_temp_variable = {break = 1}
+									set_temp_variable = { break = 1 }
 								}
 								else = {
-									set_temp_variable = {export_max = 0}
+									set_temp_variable = { export_max = 0 }
 
 									var:trader = {
-										add_to_temp_variable = {export_max = resource_exported@tungsten}
+										add_to_temp_variable = { export_max = resource_exported@tungsten }
 									}
-
-									set_temp_variable = {current_import_amount = resource_imported@tungsten}
 
 									if = {
 										limit = {
-											check_variable = {export_max < import_needed}
+											check_variable = { export_max < import_needed }
 										}
-										set_temp_variable = {traded_resources = export_max}
+										set_temp_variable = { traded_resources = export_max }
 									}
 									else = {
-										set_temp_variable = {traded_resources = import_needed}
+										set_temp_variable = { traded_resources = import_needed }
+									}
+
+									set_temp_variable = { temp_traded_resources = traded_resources }
+									modulo_temp_variable = { temp_traded_resources = 8}
+									if = {
+										limit = {
+											check_variable = { temp_traded_resources > 0 }
+										}
+										subtract_from_temp_variable = { traded_resources = temp_traded_resources }
+									}
+									clamp_temp_variable = {
+										var = traded_resources
+										min = 8
 									}
 
 									set_temp_variable = {temp_traded_resources = traded_resources}
@@ -247,7 +310,7 @@ on_actions = {
 										EXPORTER = "[?trader.GetTag]"
 									}
 
-									subtract_from_temp_variable = {import_needed = traded_resources}
+									subtract_from_temp_variable = { import_needed = traded_resources }
 								}
     						}
 						}
@@ -256,11 +319,21 @@ on_actions = {
 					# STEEL
 					if = {
                     	limit = {
-                        	check_variable = {resource@steel < 0}
+                        	check_variable = { resource@steel < 0 }
                     	}
-                    	set_temp_variable = {import_needed = -1}
-						multiply_temp_variable = {import_needed = resource@steel}
-						add_to_temp_variable = {import_needed = resource_imported@steel}
+                    	set_temp_variable = { import_needed = -1 }
+						multiply_temp_variable = { import_needed = resource@steel }
+						add_to_temp_variable = { import_needed = resource_imported@steel }
+
+						set_temp_variable = { import_needed_remainder = import_needed }
+						modulo_temp_variable = { import_needed_remainder = 8 }
+						if = {
+							limit = {
+								check_variable = { import_needed_remainder > 0 }
+							}
+							subtract_from_temp_variable = { import_needed = import_needed_remainder }
+							add_to_temp_variable = { import_needed = 8  }
+						}
 
 						get_sorted_scored_countries = {
 							scorer = best_trader_steel_scorer  
@@ -274,32 +347,43 @@ on_actions = {
 							if = {
         						limit = {
 									NOT = {
-										check_variable = {trader = FROM}
+										check_variable = { trader = FROM }
 									}
         						}
 								if = {
 									limit = {
-										check_variable = {import_needed < 1}
+										check_variable = { import_needed < 1 }
 									}
-									set_temp_variable = {break = 1}
+									set_temp_variable = { break = 1 }
 								}
 								else = {
-									set_temp_variable = {export_max = 0}
+									set_temp_variable = { export_max = 0 }
 
 									var:trader = {
-										add_to_temp_variable = {export_max = resource_exported@steel}
+										add_to_temp_variable = { export_max = resource_exported@steel }
 									}
-
-									set_temp_variable = {current_import_amount = resource_imported@steel}
 
 									if = {
 										limit = {
-											check_variable = {export_max < import_needed}
+											check_variable = { export_max < import_needed }
 										}
-										set_temp_variable = {traded_resources = export_max}
+										set_temp_variable = { traded_resources = export_max }
 									}
 									else = {
-										set_temp_variable = {traded_resources = import_needed}
+										set_temp_variable = { traded_resources = import_needed }
+									}
+
+									set_temp_variable = { temp_traded_resources = traded_resources }
+									modulo_temp_variable = { temp_traded_resources = 8 }
+									if = {
+										limit = {
+											check_variable = { temp_traded_resources > 0 }
+										}
+										subtract_from_temp_variable = { traded_resources = temp_traded_resources }
+									}
+									clamp_temp_variable = {
+										var = traded_resources
+										min = 8
 									}
 
 									set_temp_variable = {temp_traded_resources = traded_resources}
@@ -327,7 +411,7 @@ on_actions = {
 										EXPORTER = "[?trader.GetTag]"
 									}
 
-									subtract_from_temp_variable = {import_needed = traded_resources}
+									subtract_from_temp_variable = { import_needed = traded_resources }
 								}
     						}
 						}
@@ -336,11 +420,21 @@ on_actions = {
 					# CHROMIUM
 					if = {
                     	limit = {
-                        	check_variable = {resource@chromium < 0}
+                        	check_variable = { resource@chromium < 0 }
                     	}
-                    	set_temp_variable = {import_needed = -1}
-                        multiply_temp_variable = {import_needed = resource@chromium}
-						add_to_temp_variable = {import_needed = resource_imported@chromium}
+                    	set_temp_variable = { import_needed = -1 }
+                        multiply_temp_variable = { import_needed = resource@chromium }
+						add_to_temp_variable = { import_needed = resource_imported@chromium }
+
+						set_temp_variable = { import_needed_remainder = import_needed }
+						modulo_temp_variable = { import_needed_remainder = 8 }
+						if = {
+							limit = {
+								check_variable = { import_needed_remainder > 0 }
+							}
+							subtract_from_temp_variable = { import_needed = import_needed_remainder }
+							add_to_temp_variable = { import_needed = 8  }
+						}
 
 						get_sorted_scored_countries_temp = {
 							scorer = best_trader_chromium_scorer  
@@ -354,32 +448,43 @@ on_actions = {
 							if = {
         						limit = {
 									NOT = {
-										check_variable = {trader = FROM}
+										check_variable = { trader = FROM }
 									}
         						}
 								if = {
 									limit = {
-										check_variable = {import_needed < 1}
+										check_variable = { import_needed < 1 }
 									}
-									set_temp_variable = {break = 1}
+									set_temp_variable = { break = 1 }
 								}
 								else = {
-									set_temp_variable = {export_max = 0}
+									set_temp_variable = { export_max = 0 }
 
 									var:trader = {
-										add_to_temp_variable = {export_max = resource_exported@chromium}
+										add_to_temp_variable = { export_max = resource_exported@chromium }
 									}
-
-									set_temp_variable = {current_import_amount = resource_imported@chromium}
 
 									if = {
 										limit = {
-											check_variable = {export_max < import_needed}
+											check_variable = { export_max < import_needed }
 										}
-										set_temp_variable = {traded_resources = export_max}
+										set_temp_variable = { traded_resources = export_max }
 									}
 									else = {
-										set_temp_variable = {traded_resources = import_needed}
+										set_temp_variable = { traded_resources = import_needed }
+									}
+
+									set_temp_variable = { temp_traded_resources = traded_resources }
+									modulo_temp_variable = { temp_traded_resources = 8}
+									if = {
+										limit = {
+											check_variable = { temp_traded_resources > 0 }
+										}
+										subtract_from_temp_variable = { traded_resources = temp_traded_resources }
+									}
+									clamp_temp_variable = {
+										var = traded_resources
+										min = 8
 									}
 
 									set_temp_variable = {temp_traded_resources = traded_resources}
@@ -407,7 +512,7 @@ on_actions = {
 										EXPORTER = "[?trader.GetTag]"
 									}
 
-									subtract_from_temp_variable = {import_needed = traded_resources}
+									subtract_from_temp_variable = { import_needed = traded_resources }
 								}
     						}
 						}
@@ -416,11 +521,21 @@ on_actions = {
 					# COAL
 					if = {
                     	limit = {
-                        	check_variable = {resource@coal < 0}
+                        	check_variable = { resource@coal < 0 }
                     	}
-                    	set_temp_variable = {import_needed = -1}
-                        multiply_temp_variable = {import_needed = resource@coal}
-						add_to_temp_variable = {import_needed = resource_imported@coal}
+                    	set_temp_variable = { import_needed = -1 }
+                        multiply_temp_variable = { import_needed = resource@coal }
+						add_to_temp_variable = { import_needed = resource_imported@coal }
+
+						set_temp_variable = { import_needed_remainder = import_needed }
+						modulo_temp_variable = { import_needed_remainder = 8 }
+						if = {
+							limit = {
+								check_variable = { import_needed_remainder > 0 }
+							}
+							subtract_from_temp_variable = { import_needed = import_needed_remainder }
+							add_to_temp_variable = { import_needed = 8  }
+						}
 
 						get_sorted_scored_countries_temp = {
 							scorer = best_trader_coal_scorer  
@@ -434,32 +549,43 @@ on_actions = {
 							if = {
         						limit = {
 									NOT = {
-										check_variable = {trader = FROM}
+										check_variable = { trader = FROM }
 									}
         						}
 								if = {
 									limit = {
-										check_variable = {import_needed < 1}
+										check_variable = { import_needed < 1 }
 									}
-									set_temp_variable = {break = 1}
+									set_temp_variable = { break = 1 }
 								}
 								else = {
-									set_temp_variable = {export_max = 0}
+									set_temp_variable = { export_max = 0 }
 
 									var:trader = {
-										add_to_temp_variable = {export_max = resource_exported@coal}
+										add_to_temp_variable = { export_max = resource_exported@coal }
 									}
-
-									set_temp_variable = {current_import_amount = resource_imported@coal}
 
 									if = {
 										limit = {
-											check_variable = {export_max < import_needed}
+											check_variable = { export_max < import_needed }
 										}
-										set_temp_variable = {traded_resources = export_max}
+										set_temp_variable = { traded_resources = export_max }
 									}
 									else = {
-										set_temp_variable = {traded_resources = import_needed}
+										set_temp_variable = { traded_resources = import_needed }
+									}
+
+									set_temp_variable = { temp_traded_resources = traded_resources }
+									modulo_temp_variable = { temp_traded_resources = 8}
+									if = {
+										limit = {
+											check_variable = { temp_traded_resources > 0 }
+										}
+										subtract_from_temp_variable = { traded_resources = temp_traded_resources }
+									}
+									clamp_temp_variable = {
+										var = traded_resources
+										min = 8
 									}
 
 									set_temp_variable = {temp_traded_resources = traded_resources}
@@ -487,7 +613,7 @@ on_actions = {
 										EXPORTER = "[?trader.GetTag]"
 									}
 
-									subtract_from_temp_variable = {import_needed = traded_resources}
+									subtract_from_temp_variable = { import_needed = traded_resources }
 								}
     						}
 						}
@@ -496,64 +622,68 @@ on_actions = {
 					### Cancel Trade
 
 					# RUBBER
-					set_temp_variable = {overtrade_value = 7}
+					set_temp_variable = { overtrade_value = 7 }
+					set_temp_variable = { net_residual_resource = resource_produced@rubber }
+					subtract_from_temp_variable = { net_residual_resource = resource_consumed@rubber }
+					subtract_from_temp_variable = { net_residual_resource = resource_exported@rubber }
+
 					every_subject_country = {
 						if = {
-							limit = {
-								has_autonomy_state = autonomy_dominion
-								check_variable = {overtrade_value < 133}
-								check_variable = {overtrade_value < resource_exported@rubber}
-							}
-							if = {
-								limit = {
-									check_variable = {overtrade_value < resource_exported@rubber}
-									check_variable = {resource_exported@rubber < 133}
-								}
-								set_temp_variable = {overtrade_value = resource_exported@rubber}
-							}
-							else = {
-								set_temp_variable = {overtrade_value = 133}
-							}
-						}
-						if = {
-							limit = {
-								has_autonomy_state = autonomy_colony
-								check_variable = {overtrade_value < 133}
-								check_variable = {overtrade_value < resource_exported@rubber}
-							}
-							if = {
-								limit = {
-									check_variable = {overtrade_value < resource_exported@rubber}
-									check_variable = {resource_exported@rubber < 133}
-								}
-								set_temp_variable = {overtrade_value = resource_exported@rubber}
-							}
-							else = {
-								set_temp_variable = {overtrade_value = 133}
-							}
-						}
-						if = {
-							limit = {
-								has_autonomy_state = autonomy_puppet
-								check_variable = {overtrade_value < 500}
-								check_variable = {overtrade_value < resource_exported@rubber}
-							}
-							if = {
-								limit = {
-									check_variable = {overtrade_value < resource_exported@rubber}
-									check_variable = {resource_exported@rubber < 500}
-								}
-								set_temp_variable = {overtrade_value = resource_exported@rubber}
-							}
-							else = {
-								set_temp_variable = {overtrade_value = 500}
-							}
-						}
+                            limit = {
+                                or = {
+                                    has_autonomy_state = autonomy_collaboration_government
+                                    has_autonomy_state = autonomy_reichskommissariat
+                                }
+                                check_variable = { resource_exported@rubber > 0 }
+                                check_variable = { net_residual_resource > -80 }
+                            }
+                            set_temp_variable = { temp_overtrade_value = net_residual_resource }
+                            add_to_temp_variable = { temp_overtrade_value = 87 }
+
+                            if = {
+                                limit = {
+                                    check_variable = { temp_overtrade_value > overtrade_value }
+                                }
+                                set_temp_variable = { overtrade_value = temp_overtrade_value }
+                            }
+                        }
+                        if = {
+                            limit = {
+                                has_autonomy_state = autonomy_dominion
+                                check_variable = { resource_exported@rubber > 0 }
+                                check_variable = { net_residual_resource > -16 }
+                            }
+                            set_temp_variable = { temp_overtrade_value = net_residual_resource }
+                            add_to_temp_variable = { temp_overtrade_value = 23 }
+
+                            if = {
+                                limit = {
+                                    check_variable = { temp_overtrade_value > overtrade_value }
+                                }
+                                set_temp_variable = { overtrade_value = temp_overtrade_value }
+                            }
+                        }
+                        if = {
+                            limit = {
+                                has_autonomy_state = autonomy_satellite
+                                check_variable = { resource_exported@rubber > 0 }
+                                check_variable = { net_residual_resource > -10 }
+                            }
+                            set_temp_variable = { temp_overtrade_value = net_residual_resource }
+                            add_to_temp_variable = { temp_overtrade_value = 17 }
+
+                            if = {
+                                limit = {
+                                    check_variable = { temp_overtrade_value > overtrade_value }
+                                }
+                                set_temp_variable = { overtrade_value = temp_overtrade_value }
+                            }
+                        }
 					}
 					if = {
 						limit = {
-							check_variable = {resource@rubber > overtrade_value}
-							check_variable = {resource_imported@rubber > 0}
+							check_variable = { resource@rubber > overtrade_value }
+							check_variable = { resource_imported@rubber > 0 }
 						}
 
 						get_sorted_scored_countries_temp = {
@@ -580,64 +710,68 @@ on_actions = {
 					}
 
 					# ALUMINIUM
-					set_temp_variable = {overtrade_value = 7}
+					set_temp_variable = { overtrade_value = 7}
+					set_temp_variable = { net_residual_resource = resource_produced@aluminium }
+					subtract_from_temp_variable = { net_residual_resource = resource_consumed@aluminium }
+					subtract_from_temp_variable = { net_residual_resource = resource_exported@aluminium }
+
 					every_subject_country = {
 						if = {
-							limit = {
-								has_autonomy_state = autonomy_dominion
-								check_variable = {overtrade_value < 133}
-								check_variable = {overtrade_value < resource_exported@aluminium}
-							}
-							if = {
-								limit = {
-									check_variable = {overtrade_value < resource_exported@aluminium}
-									check_variable = {resource_exported@aluminium < 133}
-								}
-								set_temp_variable = {overtrade_value = resource_exported@aluminium}
-							}
-							else = {
-								set_temp_variable = {overtrade_value = 133}
-							}
-						}
-						if = {
-							limit = {
-								has_autonomy_state = autonomy_colony
-								check_variable = {overtrade_value < 133}
-								check_variable = {overtrade_value < resource_exported@aluminium}
-							}
-							if = {
-								limit = {
-									check_variable = {overtrade_value < resource_exported@aluminium}
-									check_variable = {resource_exported@aluminium < 133}
-								}
-								set_temp_variable = {overtrade_value = resource_exported@aluminium}
-							}
-							else = {
-								set_temp_variable = {overtrade_value = 133}
-							}
-						}
-						if = {
-							limit = {
-								has_autonomy_state = autonomy_puppet
-								check_variable = {overtrade_value < 1000}
-								check_variable = {overtrade_value < resource_exported@aluminium}
-							}
-							if = {
-								limit = {
-									check_variable = {overtrade_value < resource_exported@aluminium}
-									check_variable = {resource_exported@aluminium < 1000}
-								}
-								set_temp_variable = {overtrade_value = resource_exported@aluminium}
-							}
-							else = {
-								set_temp_variable = {overtrade_value = 1000}
-							}
-						}
+                            limit = {
+                                or = {
+                                    has_autonomy_state = autonomy_collaboration_government
+                                    has_autonomy_state = autonomy_reichskommissariat
+                                }
+                                check_variable = { resource_exported@aluminium > 0 }
+                                check_variable = { net_residual_resource > -80 }
+                            }
+                            set_temp_variable = { temp_overtrade_value = net_residual_resource }
+                            add_to_temp_variable = { temp_overtrade_value = 87 }
+
+                            if = {
+                                limit = {
+                                    check_variable = { temp_overtrade_value > overtrade_value }
+                                }
+                                set_temp_variable = { overtrade_value = temp_overtrade_value }
+                            }
+                        }
+                        if = {
+                            limit = {
+                                has_autonomy_state = autonomy_dominion
+                                check_variable = { resource_exported@aluminium > 0 }
+                                check_variable = { net_residual_resource > -16 }
+                            }
+                            set_temp_variable = { temp_overtrade_value = net_residual_resource }
+                            add_to_temp_variable = { temp_overtrade_value = 23 }
+
+                            if = {
+                                limit = {
+                                    check_variable = { temp_overtrade_value > overtrade_value }
+                                }
+                                set_temp_variable = { overtrade_value = temp_overtrade_value }
+                            }
+                        }
+                        if = {
+                            limit = {
+                                has_autonomy_state = autonomy_satellite
+                                check_variable = { resource_exported@aluminium > 0 }
+                                check_variable = { net_residual_resource > -10 }
+                            }
+                            set_temp_variable = { temp_overtrade_value = net_residual_resource }
+                            add_to_temp_variable = { temp_overtrade_value = 17 }
+
+                            if = {
+                                limit = {
+                                    check_variable = { temp_overtrade_value > overtrade_value }
+                                }
+                                set_temp_variable = { overtrade_value = temp_overtrade_value }
+                            }
+                        }
 					}
 					if = {
 						limit = {
-							check_variable = {resource@aluminium > overtrade_value}
-							check_variable = {resource_imported@aluminium > 0}
+							check_variable = { resource@aluminium > overtrade_value }
+							check_variable = { resource_imported@aluminium > 0 }
 						}
 						get_sorted_scored_countries_temp = {
 							scorer = best_trader_aluminium_scorer  
@@ -663,64 +797,68 @@ on_actions = {
 					}
 
 					# TUNGSTEN
-					set_temp_variable = {overtrade_value = 7}
+					set_temp_variable = { overtrade_value = 7}
+					set_temp_variable = { net_residual_resource = resource_produced@tungsten }
+					subtract_from_temp_variable = { net_residual_resource = resource_consumed@tungsten }
+					subtract_from_temp_variable = { net_residual_resource = resource_exported@tungsten }
+
 					every_subject_country = {
 						if = {
-							limit = {
-								has_autonomy_state = autonomy_dominion
-								check_variable = {overtrade_value < 133}
-								check_variable = {overtrade_value < resource_exported@tungsten}
-							}
-							if = {
-								limit = {
-									check_variable = {overtrade_value < resource_exported@tungsten}
-									check_variable = {resource_exported@tungsten < 133}
-								}
-								set_temp_variable = {overtrade_value = resource_exported@tungsten}
-							}
-							else = {
-								set_temp_variable = {overtrade_value = 133}
-							}
-						}
-						if = {
-							limit = {
-								has_autonomy_state = autonomy_colony
-								check_variable = {overtrade_value < 133}
-								check_variable = {overtrade_value < resource_exported@tungsten}
-							}
-							if = {
-								limit = {
-									check_variable = {overtrade_value < resource_exported@tungsten}
-									check_variable = {resource_exported@tungsten < 133}
-								}
-								set_temp_variable = {overtrade_value = resource_exported@tungsten}
-							}
-							else = {
-								set_temp_variable = {overtrade_value = 133}
-							}
-						}
-						if = {
-							limit = {
-								has_autonomy_state = autonomy_puppet
-								check_variable = {overtrade_value < 1000}
-								check_variable = {overtrade_value < resource_exported@tungsten}
-							}
-							if = {
-								limit = {
-									check_variable = {overtrade_value < resource_exported@tungsten}
-									check_variable = {resource_exported@tungsten < 1000}
-								}
-								set_temp_variable = {overtrade_value = resource_exported@tungsten}
-							}
-							else = {
-								set_temp_variable = {overtrade_value = 1000}
-							}
-						}
+                            limit = {
+                                or = {
+                                    has_autonomy_state = autonomy_collaboration_government
+                                    has_autonomy_state = autonomy_reichskommissariat
+                                }
+                                check_variable = { resource_exported@tungsten > 0 }
+                                check_variable = { net_residual_resource > -80 }
+                            }
+                            set_temp_variable = { temp_overtrade_value = net_residual_resource }
+                            add_to_temp_variable = { temp_overtrade_value = 87 }
+
+                            if = {
+                                limit = {
+                                    check_variable = { temp_overtrade_value > overtrade_value }
+                                }
+                                set_temp_variable = { overtrade_value = temp_overtrade_value }
+                            }
+                        }
+                        if = {
+                            limit = {
+                                has_autonomy_state = autonomy_dominion
+                                check_variable = { resource_exported@tungsten > 0 }
+                                check_variable = { net_residual_resource > -16 }
+                            }
+                            set_temp_variable = { temp_overtrade_value = net_residual_resource }
+                            add_to_temp_variable = { temp_overtrade_value = 23 }
+
+                            if = {
+                                limit = {
+                                    check_variable = { temp_overtrade_value > overtrade_value }
+                                }
+                                set_temp_variable = { overtrade_value = temp_overtrade_value }
+                            }
+                        }
+                        if = {
+                            limit = {
+                                has_autonomy_state = autonomy_satellite
+                                check_variable = { resource_exported@tungsten > 0 }
+                                check_variable = { net_residual_resource > -10 }
+                            }
+                            set_temp_variable = { temp_overtrade_value = net_residual_resource }
+                            add_to_temp_variable = { temp_overtrade_value = 17 }
+
+                            if = {
+                                limit = {
+                                    check_variable = { temp_overtrade_value > overtrade_value }
+                                }
+                                set_temp_variable = { overtrade_value = temp_overtrade_value }
+                            }
+                        }
 					}
 					if = {
 						limit = {
-							check_variable = {resource@tungsten > overtrade_value}
-							check_variable = {resource_imported@tungsten > 0}
+							check_variable = { resource@tungsten > overtrade_value }
+							check_variable = { resource_imported@tungsten > 0 }
 						}
 						get_sorted_scored_countries_temp = {
 							scorer = best_trader_tungsten_scorer  
@@ -746,64 +884,68 @@ on_actions = {
 					}
 
 					# STEEL
-					set_temp_variable = {overtrade_value = 7}
+					set_temp_variable = { overtrade_value = 7 }
+					set_temp_variable = { net_residual_resource = resource_produced@steel }
+					subtract_from_temp_variable = { net_residual_resource = resource_consumed@steel }
+					subtract_from_temp_variable = { net_residual_resource = resource_exported@steel }
+
 					every_subject_country = {
 						if = {
-							limit = {
-								has_autonomy_state = autonomy_dominion
-								check_variable = {overtrade_value < 133}
-								check_variable = {overtrade_value < resource_exported@steel}
-							}
-							if = {
-								limit = {
-									check_variable = {overtrade_value < resource_exported@steel}
-									check_variable = {resource_exported@steel < 133}
-								}
-								set_temp_variable = {overtrade_value = resource_exported@steel}
-							}
-							else = {
-								set_temp_variable = {overtrade_value = 133}
-							}
-						}
-						if = {
-							limit = {
-								has_autonomy_state = autonomy_colony
-								check_variable = {overtrade_value < 133}
-								check_variable = {overtrade_value < resource_exported@steel}
-							}
-							if = {
-								limit = {
-									check_variable = {overtrade_value < resource_exported@steel}
-									check_variable = {resource_exported@steel < 133}
-								}
-								set_temp_variable = {overtrade_value = resource_exported@steel}
-							}
-							else = {
-								set_temp_variable = {overtrade_value = 133}
-							}
-						}
-						if = {
-							limit = {
-								has_autonomy_state = autonomy_puppet
-								check_variable = {overtrade_value < 1000}
-								check_variable = {overtrade_value < resource_exported@steel}
-							}
-							if = {
-								limit = {
-									check_variable = {overtrade_value < resource_exported@steel}
-									check_variable = {resource_exported@steel < 1000}
-								}
-								set_temp_variable = {overtrade_value = resource_exported@steel}
-							}
-							else = {
-								set_temp_variable = {overtrade_value = 1000}
-							}
-						}
+                            limit = {
+                                or = {
+                                    has_autonomy_state = autonomy_collaboration_government
+                                    has_autonomy_state = autonomy_reichskommissariat
+                                }
+                                check_variable = { resource_exported@steel > 0 }
+                                check_variable = { net_residual_resource > -80 }
+                            }
+                            set_temp_variable = { temp_overtrade_value = net_residual_resource }
+                            add_to_temp_variable = { temp_overtrade_value = 87 }
+
+                            if = {
+                                limit = {
+                                    check_variable = { temp_overtrade_value > overtrade_value }
+                                }
+                                set_temp_variable = { overtrade_value = temp_overtrade_value }
+                            }
+                        }
+                        if = {
+                            limit = {
+                                has_autonomy_state = autonomy_dominion
+                                check_variable = { resource_exported@steel > 0 }
+                                check_variable = { net_residual_resource > -16 }
+                            }
+                            set_temp_variable = { temp_overtrade_value = net_residual_resource }
+                            add_to_temp_variable = { temp_overtrade_value = 23 }
+
+                            if = {
+                                limit = {
+                                    check_variable = { temp_overtrade_value > overtrade_value }
+                                }
+                                set_temp_variable = { overtrade_value = temp_overtrade_value }
+                            }
+                        }
+                        if = {
+                            limit = {
+                                has_autonomy_state = autonomy_satellite
+                                check_variable = { resource_exported@steel > 0 }
+                                check_variable = { net_residual_resource > -10 }
+                            }
+                            set_temp_variable = { temp_overtrade_value = net_residual_resource }
+                            add_to_temp_variable = { temp_overtrade_value = 17 }
+
+                            if = {
+                                limit = {
+                                    check_variable = { temp_overtrade_value > overtrade_value }
+                                }
+                                set_temp_variable = { overtrade_value = temp_overtrade_value }
+                            }
+                        }
 					}
 					if = {
 						limit = {
-							check_variable = {resource@steel > overtrade_value}
-							check_variable = {resource_imported@steel > 0}
+							check_variable = { resource@steel > overtrade_value }
+							check_variable = { resource_imported@steel > 0 }
 						}
 						get_sorted_scored_countries_temp = {
 							scorer = best_trader_steel_scorer  
@@ -829,64 +971,68 @@ on_actions = {
 					}
 
 					# CHROMIUM
-					set_temp_variable = {overtrade_value = 7}
+					set_temp_variable = { overtrade_value = 7 }
+					set_temp_variable = { net_residual_resource = resource_produced@chromium }
+					subtract_from_temp_variable = { net_residual_resource = resource_consumed@chromium }
+					subtract_from_temp_variable = { net_residual_resource = resource_exported@chromium }
+
 					every_subject_country = {
 						if = {
-							limit = {
-								has_autonomy_state = autonomy_dominion
-								check_variable = {overtrade_value < 133}
-								check_variable = {overtrade_value < resource_exported@chromium}
-							}
-							if = {
-								limit = {
-									check_variable = {overtrade_value < resource_exported@chromium}
-									check_variable = {resource_exported@chromium < 133}
-								}
-								set_temp_variable = {overtrade_value = resource_exported@chromium}
-							}
-							else = {
-								set_temp_variable = {overtrade_value = 133}
-							}
-						}
-						if = {
-							limit = {
-								has_autonomy_state = autonomy_colony
-								check_variable = {overtrade_value < 133}
-								check_variable = {overtrade_value < resource_exported@chromium}
-							}
-							if = {
-								limit = {
-									check_variable = {overtrade_value < resource_exported@chromium}
-									check_variable = {resource_exported@chromium < 133}
-								}
-								set_temp_variable = {overtrade_value = resource_exported@chromium}
-							}
-							else = {
-								set_temp_variable = {overtrade_value = 133}
-							}
-						}
-						if = {
-							limit = {
-								has_autonomy_state = autonomy_puppet
-								check_variable = {overtrade_value < 500}
-								check_variable = {overtrade_value < resource_exported@chromium}
-							}
-							if = {
-								limit = {
-									check_variable = {overtrade_value < resource_exported@chromium}
-									check_variable = {resource_exported@chromium < 500}
-								}
-								set_temp_variable = {overtrade_value = resource_exported@chromium}
-							}
-							else = {
-								set_temp_variable = {overtrade_value = 500}
-							}
-						}
+                            limit = {
+                                or = {
+                                    has_autonomy_state = autonomy_collaboration_government
+                                    has_autonomy_state = autonomy_reichskommissariat
+                                }
+                                check_variable = { resource_exported@chromium > 0 }
+                                check_variable = { net_residual_resource > -80 }
+                            }
+                            set_temp_variable = { temp_overtrade_value = net_residual_resource }
+                            add_to_temp_variable = { temp_overtrade_value = 87 }
+
+                            if = {
+                                limit = {
+                                    check_variable = { temp_overtrade_value > overtrade_value }
+                                }
+                                set_temp_variable = { overtrade_value = temp_overtrade_value }
+                            }
+                        }
+                        if = {
+                            limit = {
+                                has_autonomy_state = autonomy_dominion
+                                check_variable = { resource_exported@chromium > 0 }
+                                check_variable = { net_residual_resource > -16 }
+                            }
+                            set_temp_variable = { temp_overtrade_value = net_residual_resource }
+                            add_to_temp_variable = { temp_overtrade_value = 23 }
+
+                            if = {
+                                limit = {
+                                    check_variable = { temp_overtrade_value > overtrade_value }
+                                }
+                                set_temp_variable = { overtrade_value = temp_overtrade_value }
+                            }
+                        }
+                        if = {
+                            limit = {
+                                has_autonomy_state = autonomy_satellite
+                                check_variable = { resource_exported@chromium > 0 }
+                                check_variable = { net_residual_resource > -10 }
+                            }
+                            set_temp_variable = { temp_overtrade_value = net_residual_resource }
+                            add_to_temp_variable = { temp_overtrade_value = 17 }
+
+                            if = {
+                                limit = {
+                                    check_variable = { temp_overtrade_value > overtrade_value }
+                                }
+                                set_temp_variable = { overtrade_value = temp_overtrade_value }
+                            }
+                        }
 					}
 					if = {
 						limit = {
-							check_variable = {resource@chromium > overtrade_value}
-							check_variable = {resource_imported@chromium > 0}
+							check_variable = { resource@chromium > overtrade_value }
+							check_variable = { resource_imported@chromium > 0 }
 						}
 						get_sorted_scored_countries_temp = {
 							scorer = best_trader_chromium_scorer  
@@ -912,64 +1058,68 @@ on_actions = {
 					}
 
 					# COAL
-					set_temp_variable = {overtrade_value = 7}
+					set_temp_variable = { overtrade_value = 7 }
+					set_temp_variable = { net_residual_resource = resource_produced@coal }
+					subtract_from_temp_variable = { net_residual_resource = resource_consumed@coal }
+					subtract_from_temp_variable = { net_residual_resource = resource_exported@coal }
+
 					every_subject_country = {
 						if = {
-							limit = {
-								has_autonomy_state = autonomy_dominion
-								check_variable = {overtrade_value < 133}
-								check_variable = {overtrade_value < resource_exported@coal}
-							}
-							if = {
-								limit = {
-									check_variable = {overtrade_value < resource_exported@coal}
-									check_variable = {resource_exported@coal < 133}
-								}
-								set_temp_variable = {overtrade_value = resource_exported@coal}
-							}
-							else = {
-								set_temp_variable = {overtrade_value = 133}
-							}
-						}
-						if = {
-							limit = {
-								has_autonomy_state = autonomy_colony
-								check_variable = {overtrade_value < 133}
-								check_variable = {overtrade_value < resource_exported@coal}
-							}
-							if = {
-								limit = {
-									check_variable = {overtrade_value < resource_exported@coal}
-									check_variable = {resource_exported@coal < 133}
-								}
-								set_temp_variable = {overtrade_value = resource_exported@coal}
-							}
-							else = {
-								set_temp_variable = {overtrade_value = 133}
-							}
-						}
-						if = {
-							limit = {
-								has_autonomy_state = autonomy_puppet
-								check_variable = {overtrade_value < 500}
-								check_variable = {overtrade_value < resource_exported@coal}
-							}
-							if = {
-								limit = {
-									check_variable = {overtrade_value < resource_exported@coal}
-									check_variable = {resource_exported@coal < 500}
-								}
-								set_temp_variable = {overtrade_value = resource_exported@coal}
-							}
-							else = {
-								set_temp_variable = {overtrade_value = 500}
-							}
-						}
+                            limit = {
+                                or = {
+                                    has_autonomy_state = autonomy_collaboration_government
+                                    has_autonomy_state = autonomy_reichskommissariat
+                                }
+                                check_variable = { resource_exported@coal > 0 }
+                                check_variable = { net_residual_resource > -80 }
+                            }
+                            set_temp_variable = { temp_overtrade_value = net_residual_resource }
+                            add_to_temp_variable = { temp_overtrade_value = 87 }
+
+                            if = {
+                                limit = {
+                                    check_variable = { temp_overtrade_value > overtrade_value }
+                                }
+                                set_temp_variable = { overtrade_value = temp_overtrade_value }
+                            }
+                        }
+                        if = {
+                            limit = {
+                                has_autonomy_state = autonomy_dominion
+                                check_variable = { resource_exported@coal > 0 }
+                                check_variable = { net_residual_resource > -16 }
+                            }
+                            set_temp_variable = { temp_overtrade_value = net_residual_resource }
+                            add_to_temp_variable = { temp_overtrade_value = 23 }
+
+                            if = {
+                                limit = {
+                                    check_variable = { temp_overtrade_value > overtrade_value }
+                                }
+                                set_temp_variable = { overtrade_value = temp_overtrade_value }
+                            }
+                        }
+                        if = {
+                            limit = {
+                                has_autonomy_state = autonomy_satellite
+                                check_variable = { resource_exported@coal > 0 }
+                                check_variable = { net_residual_resource > -10 }
+                            }
+                            set_temp_variable = { temp_overtrade_value = net_residual_resource }
+                            add_to_temp_variable = { temp_overtrade_value = 17 }
+
+                            if = {
+                                limit = {
+                                    check_variable = { temp_overtrade_value > overtrade_value }
+                                }
+                                set_temp_variable = { overtrade_value = temp_overtrade_value }
+                            }
+                        }
 					}
 					if = {
 						limit = {
-							check_variable = {resource@coal > overtrade_value}
-							check_variable = {resource_imported@coal > 0}
+							check_variable = { resource@coal > overtrade_value }
+							check_variable = { resource_imported@coal > 0 }
 						}
 						get_sorted_scored_countries_temp = {
 							scorer = best_trader_coal_scorer  
