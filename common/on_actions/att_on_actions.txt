@@ -575,6 +575,7 @@ on_actions = {
                                 check_variable = { resource_exported@rubber > 0 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 80 }
 							modulo_temp_variable = { temp_overtrade_value = 16 }
                             add_to_temp_variable = { temp_overtrade_value = 23 }
 
@@ -591,6 +592,8 @@ on_actions = {
                                 check_variable = { resource_exported@rubber > 0 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 80 }
+							modulo_temp_variable = { temp_overtrade_value = 16 }
 							modulo_temp_variable = { temp_overtrade_value = 10 }
                             add_to_temp_variable = { temp_overtrade_value = 17 }
 
@@ -663,6 +666,7 @@ on_actions = {
                                 check_variable = { resource_exported@aluminium > 0 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 80 }
 							modulo_temp_variable = { temp_overtrade_value = 16 }
                             add_to_temp_variable = { temp_overtrade_value = 23 }
 
@@ -679,6 +683,8 @@ on_actions = {
                                 check_variable = { resource_exported@aluminium > 0 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 80 }
+							modulo_temp_variable = { temp_overtrade_value = 16 }
 							modulo_temp_variable = { temp_overtrade_value = 10 }
                             add_to_temp_variable = { temp_overtrade_value = 17 }
 
@@ -750,6 +756,7 @@ on_actions = {
                                 check_variable = { resource_exported@tungsten > 0 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 80 }
 							modulo_temp_variable = { temp_overtrade_value = 16 }
                             add_to_temp_variable = { temp_overtrade_value = 23 }
 
@@ -766,6 +773,8 @@ on_actions = {
                                 check_variable = { resource_exported@tungsten > 0 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 80 }
+							modulo_temp_variable = { temp_overtrade_value = 16 }
 							modulo_temp_variable = { temp_overtrade_value = 10 }
                             add_to_temp_variable = { temp_overtrade_value = 17 }
 
@@ -837,6 +846,7 @@ on_actions = {
                                 check_variable = { resource_exported@steel > 0 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 80 }
 							modulo_temp_variable = { temp_overtrade_value = 16 }
                             add_to_temp_variable = { temp_overtrade_value = 23 }
 
@@ -853,6 +863,8 @@ on_actions = {
                                 check_variable = { resource_exported@steel > 0 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 80 }
+							modulo_temp_variable = { temp_overtrade_value = 16 }
 							modulo_temp_variable = { temp_overtrade_value = 10 }
                             add_to_temp_variable = { temp_overtrade_value = 17 }
 
@@ -924,6 +936,7 @@ on_actions = {
                                 check_variable = { resource_exported@chromium > 0 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 80 }
 							modulo_temp_variable = { temp_overtrade_value = 16 }
                             add_to_temp_variable = { temp_overtrade_value = 23 }
 
@@ -940,6 +953,8 @@ on_actions = {
                                 check_variable = { resource_exported@chromium > 0 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 80 }
+							modulo_temp_variable = { temp_overtrade_value = 16 }
 							modulo_temp_variable = { temp_overtrade_value = 10 }
                             add_to_temp_variable = { temp_overtrade_value = 17 }
 
@@ -1011,6 +1026,7 @@ on_actions = {
                                 check_variable = { resource_exported@coal > 0 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 80 }
 							modulo_temp_variable = { temp_overtrade_value = 16 }
                             add_to_temp_variable = { temp_overtrade_value = 23 }
 
@@ -1027,6 +1043,8 @@ on_actions = {
                                 check_variable = { resource_exported@coal > 0 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 80 }
+							modulo_temp_variable = { temp_overtrade_value = 16 }
 							modulo_temp_variable = { temp_overtrade_value = 10 }
                             add_to_temp_variable = { temp_overtrade_value = 17 }
 
