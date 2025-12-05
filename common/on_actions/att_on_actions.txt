@@ -557,9 +557,9 @@ on_actions = {
                                     has_autonomy_state = autonomy_reichskommissariat
                                 }
                                 check_variable = { resource_exported@rubber > 0 }
-                                check_variable = { net_residual_resource > -80 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 80 }
                             add_to_temp_variable = { temp_overtrade_value = 87 }
 
                             if = {
@@ -573,9 +573,9 @@ on_actions = {
                             limit = {
                                 has_autonomy_state = autonomy_dominion
                                 check_variable = { resource_exported@rubber > 0 }
-                                check_variable = { net_residual_resource > -16 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 16 }
                             add_to_temp_variable = { temp_overtrade_value = 23 }
 
                             if = {
@@ -589,9 +589,9 @@ on_actions = {
                             limit = {
                                 has_autonomy_state = autonomy_satellite
                                 check_variable = { resource_exported@rubber > 0 }
-                                check_variable = { net_residual_resource > -10 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 10 }
                             add_to_temp_variable = { temp_overtrade_value = 17 }
 
                             if = {
@@ -645,9 +645,9 @@ on_actions = {
                                     has_autonomy_state = autonomy_reichskommissariat
                                 }
                                 check_variable = { resource_exported@aluminium > 0 }
-                                check_variable = { net_residual_resource > -80 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 80 }
                             add_to_temp_variable = { temp_overtrade_value = 87 }
 
                             if = {
@@ -661,9 +661,9 @@ on_actions = {
                             limit = {
                                 has_autonomy_state = autonomy_dominion
                                 check_variable = { resource_exported@aluminium > 0 }
-                                check_variable = { net_residual_resource > -16 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 16 }
                             add_to_temp_variable = { temp_overtrade_value = 23 }
 
                             if = {
@@ -677,9 +677,9 @@ on_actions = {
                             limit = {
                                 has_autonomy_state = autonomy_satellite
                                 check_variable = { resource_exported@aluminium > 0 }
-                                check_variable = { net_residual_resource > -10 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 10 }
                             add_to_temp_variable = { temp_overtrade_value = 17 }
 
                             if = {
@@ -732,9 +732,9 @@ on_actions = {
                                     has_autonomy_state = autonomy_reichskommissariat
                                 }
                                 check_variable = { resource_exported@tungsten > 0 }
-                                check_variable = { net_residual_resource > -80 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 80 }
                             add_to_temp_variable = { temp_overtrade_value = 87 }
 
                             if = {
@@ -748,9 +748,9 @@ on_actions = {
                             limit = {
                                 has_autonomy_state = autonomy_dominion
                                 check_variable = { resource_exported@tungsten > 0 }
-                                check_variable = { net_residual_resource > -16 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 16 }
                             add_to_temp_variable = { temp_overtrade_value = 23 }
 
                             if = {
@@ -764,9 +764,9 @@ on_actions = {
                             limit = {
                                 has_autonomy_state = autonomy_satellite
                                 check_variable = { resource_exported@tungsten > 0 }
-                                check_variable = { net_residual_resource > -10 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 10 }
                             add_to_temp_variable = { temp_overtrade_value = 17 }
 
                             if = {
@@ -819,9 +819,9 @@ on_actions = {
                                     has_autonomy_state = autonomy_reichskommissariat
                                 }
                                 check_variable = { resource_exported@steel > 0 }
-                                check_variable = { net_residual_resource > -80 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 80 }
                             add_to_temp_variable = { temp_overtrade_value = 87 }
 
                             if = {
@@ -835,9 +835,9 @@ on_actions = {
                             limit = {
                                 has_autonomy_state = autonomy_dominion
                                 check_variable = { resource_exported@steel > 0 }
-                                check_variable = { net_residual_resource > -16 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 16 }
                             add_to_temp_variable = { temp_overtrade_value = 23 }
 
                             if = {
@@ -851,9 +851,9 @@ on_actions = {
                             limit = {
                                 has_autonomy_state = autonomy_satellite
                                 check_variable = { resource_exported@steel > 0 }
-                                check_variable = { net_residual_resource > -10 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 10 }
                             add_to_temp_variable = { temp_overtrade_value = 17 }
 
                             if = {
@@ -906,9 +906,9 @@ on_actions = {
                                     has_autonomy_state = autonomy_reichskommissariat
                                 }
                                 check_variable = { resource_exported@chromium > 0 }
-                                check_variable = { net_residual_resource > -80 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 80 }
                             add_to_temp_variable = { temp_overtrade_value = 87 }
 
                             if = {
@@ -922,9 +922,9 @@ on_actions = {
                             limit = {
                                 has_autonomy_state = autonomy_dominion
                                 check_variable = { resource_exported@chromium > 0 }
-                                check_variable = { net_residual_resource > -16 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 16 }
                             add_to_temp_variable = { temp_overtrade_value = 23 }
 
                             if = {
@@ -938,9 +938,9 @@ on_actions = {
                             limit = {
                                 has_autonomy_state = autonomy_satellite
                                 check_variable = { resource_exported@chromium > 0 }
-                                check_variable = { net_residual_resource > -10 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 10 }
                             add_to_temp_variable = { temp_overtrade_value = 17 }
 
                             if = {
@@ -993,9 +993,9 @@ on_actions = {
                                     has_autonomy_state = autonomy_reichskommissariat
                                 }
                                 check_variable = { resource_exported@coal > 0 }
-                                check_variable = { net_residual_resource > -80 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 80 }
                             add_to_temp_variable = { temp_overtrade_value = 87 }
 
                             if = {
@@ -1009,9 +1009,9 @@ on_actions = {
                             limit = {
                                 has_autonomy_state = autonomy_dominion
                                 check_variable = { resource_exported@coal > 0 }
-                                check_variable = { net_residual_resource > -16 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 16 }
                             add_to_temp_variable = { temp_overtrade_value = 23 }
 
                             if = {
@@ -1025,9 +1025,9 @@ on_actions = {
                             limit = {
                                 has_autonomy_state = autonomy_satellite
                                 check_variable = { resource_exported@coal > 0 }
-                                check_variable = { net_residual_resource > -10 }
                             }
                             set_temp_variable = { temp_overtrade_value = net_residual_resource }
+							modulo_temp_variable = { temp_overtrade_value = 10 }
                             add_to_temp_variable = { temp_overtrade_value = 17 }
 
                             if = {
