@@ -4,5 +4,5 @@ tags={
 }
 name="AutoTrade"
 picture="thumbnail.png"
-supported_version="1.17.0"
+supported_version="1.17.*"
 remote_file_id="3615826376"
